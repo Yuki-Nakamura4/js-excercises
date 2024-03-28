@@ -72,7 +72,7 @@ class Histogram {
 
     // 各項目を1行のテキストに変換する。
     let lines = entries.map(
-      ([l, n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`,
+      ([l, n]) => `${l}: ${"#".repeat(Math.round(n))} ${n.toFixed(2)}%`
     );
 
     // 各行を改行文字で区切って結合し、結合した文字列を返す。

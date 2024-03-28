@@ -30,7 +30,7 @@ javascript:alert("Hello, World!")
 また、常に期待した結果を得るためにはどのようにコードを修正すべきか答えなさい。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <body>
     <script>
@@ -113,7 +113,7 @@ entries = entries.filter((entry) => entry[1] >= 0.5);
 // padStart で表示幅を揃える / # の数を n ではなく 10 * n に変更
 const lines = entries.map(
   ([l, n]) =>
-    `${l.padStart(10)}: ${"#".repeat(Math.round(10 * n))} ${n.toFixed(2)}%`
+    `${l.padStart(10)}: ${"#".repeat(Math.round(10 * n))} ${n.toFixed(2)}%`,
 );
 ```
 
