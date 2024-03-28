@@ -1,13 +1,43 @@
+<!-- HTMLを開いてから開発者ツールを開くときも42, 0が表示されるようにする -->
+
+<!-- 1. オブジェクトのプロパティの値を渡す -->
+<!-- オブジェクト自体は参照型だが、プロパティの値はプリミティブ型であるため -->
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      let life = { answer: 42 };
+      console.log(life.answer); // 変更した箇所。42が表示される
+      life.answer = 0;
+      console.log(life); // { answer: 0 }が表示される
+    </script>
+  </body>
+</html> -->
+
+<!-- 2. オブジェクトのコピーを渡す -->
+<!-- スプレット構文でシャローコピーを生成する。コピーは変更後の影響を受けない -->
 <!DOCTYPE html>
 <html>
-
-<body>
+  <body>
     <script>
-        let life = { answer: 42 };
-        console.log(life);
-        life.answer = 0;
-        console.log(life);
+      let life = { answer: 42 };
+      console.log({...life}); // 変更した箇所。{ answer: 42}が表示される
+      life.answer = 0;
+      console.log(life); // { answer: 0 }が表示される
     </script>
-</body>
-
+  </body>
 </html>
+
+
+<!-- 変更前 -->
+<!-- <!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      let life = { answer: 42 };　// { answer: 0 }が表示される
+      console.log(life);
+      life.answer = 0;
+      console.log(life);　// { answer: 0 }が表示される
+    </script>
+  </body>
+</html> -->
