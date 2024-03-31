@@ -7,7 +7,7 @@ Number.MAX_SAFE_INTEGER - JavaScript - MDN Web Docs
 https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 
 
-整数値 2^53 + 1 は直接 IEEE-754 では表現できず、四捨五入や切り捨ての丸めによって 2^53 になってしまう
+整数値 2^53 + 1 は直接 IEEE-754 では表現できず、四捨五入や切り捨ての丸めによって 2^53 になってしまう。
 
 参考:
 Number.isSafeInteger() - JavaScript - MDN Web Docs
@@ -15,12 +15,6 @@ https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Nu
 
 
 ちなみにJavaなどにおけるint型の最大値は 2^31 - 1 (2,147,483,647) であり、最小値は -2^31
-最近睡眠時間管理アプリ「ポケモンスリープ」にて、ゲーム内の「ねむけパワー」の値が21億4748万3647を超えると、数値表示がマイナスになってしまう不具合が発生した
-
-参考:
-『ポケモンスリープ』「ねむけパワーが21億4748万3647超でマイナスになる」不具合になぜか“見覚えある”との声あがる。一部の人にやたら馴染み深い数値でマイナスに
-https://automaton-media.com/articles/newsjp/20240330-287967/
-
 
 JavaScriptとJavaの整数値の範囲の違いは、それぞれの言語が異なる数値型を使用していることに起因する。
 
@@ -36,3 +30,17 @@ Javaのint型は32ビット符号付き整数で、範囲は約-2,147,483,648か
 参考:
 倍精度浮動小数点数
 https://ja.wikipedia.org/wiki/%E5%80%8D%E7%B2%BE%E5%BA%A6%E6%B5%AE%E5%8B%95%E5%B0%8F%E6%95%B0%E7%82%B9%E6%95%B0
+
+
+最近睡眠時間管理アプリ「ポケモンスリープ」にて、ゲーム内の「ねむけパワー」の値が21億4748万3647を超えると、数値表示がマイナスになってしまう不具合が発生した。これはint型の符号付き整数の扱える範囲を超えてオーバーフローが発生したからだと考えられる。
+
+参考:
+『ポケモンスリープ』「ねむけパワーが21億4748万3647超でマイナスになる」不具合になぜか“見覚えある”との声あがる。一部の人にやたら馴染み深い数値でマイナスに
+https://automaton-media.com/articles/newsjp/20240330-287967/
+
+なお、JavaScript において表すことが可能な最大の数値 (Number.MAX_VALUE)は21024 - 1、またはおよそ 1.7976931348623157E+308である。
+これを超える数値は Infinity で表される。
+
+参考:
+Number.MAX_VALUE - JavaScript - MDN Web Docs
+https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_VALUE

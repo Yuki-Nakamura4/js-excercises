@@ -1,7 +1,7 @@
-// 結果
-// NaNが含まれる四則演算の結果はすべてNaNになった
-// 正負のInfinity同士の和(あるいは正のInfinity同士の差)で互いに打ち消し合うと、0ではなくNaNになる
-// Infinity同士の割り算は(正負に関わらず)1や-1ではなくNaNになる
+結果
+- NaNが含まれる四則演算の結果はすべてNaNになった
+- 正負のInfinity同士の和(あるいは正のInfinity同士の差)で互いに打ち消し合うと、0ではなくNaNになる
+- Infinity同士の割り算は(正負に関わらず)1や-1ではなくNaNになる
 
 Calculations for Infinity and Infinity:
 + : Infinity
