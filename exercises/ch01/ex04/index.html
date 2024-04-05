@@ -18,14 +18,16 @@
 <!-- スプレット構文でシャローコピーを生成する。コピーは変更後の影響を受けない -->
 <!doctype html>
 <html>
-  <body>
-    <script>
-      let life = { answer: 42 };
-      console.log({ ...life }); // 変更した箇所。{ answer: 42}が表示される
-      life.answer = 0;
-      console.log(life); // { answer: 0 }が表示される
-    </script>
-  </body>
+
+<body>
+  <script>
+    let life = { answer: 42 };
+    console.log({ ...life }); // 変更した箇所。{ answer: 42}が表示される
+    life.answer = 0;
+    console.log(life); // { answer: 0 }が表示される
+  </script>
+</body>
+
 </html>
 
 <!-- 変更前 -->

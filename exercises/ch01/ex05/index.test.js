@@ -19,7 +19,7 @@ describe("math", () => {
     });
   });
 
-  // sum関数のテスト　2つの引数の合計を返す
+  // sum関数のテスト　引数の配列の合計を返す
   describe("sum", () => {
     it("returns sum of two numbers when both values are positive", () => {
       expect(sum([3, 4])).toBe(7);
@@ -35,6 +35,21 @@ describe("math", () => {
 
     it("returns sum of two numbers when both values are negative", () => {
       expect(sum([-3, -4])).toBe(-7);
+    });
+
+    // 要素数が0の場合
+    it("returns 0 when empty array given", () => {
+      expect(sum([])).toBe(0);
+    });
+
+    // 要素数が1の場合
+    it("returns the element when array with one element given", () => {
+      expect(sum([42])).toBe(42);
+    });
+
+    // 要素数が3以上の場合
+    it("returns sum of three numbers when three values are given", () => {
+      expect(sum([3, 4, 5])).toBe(12);
     });
   });
 

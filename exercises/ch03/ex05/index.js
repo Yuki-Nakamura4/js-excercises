@@ -6,6 +6,6 @@ export function convertLFtoCRLF(str) {
 
 export function convertCRLFtoLF(str) {
   // CR+LF -> LF
-  str = str.replace(/\r\n/g, "\n");
+  str = str.replace(/\r\n/g, "\n"); // 正規表現で書く("\r\n")ではダメ
   return str;
 }

@@ -38,7 +38,7 @@ https://ja.wikipedia.org/wiki/%E5%80%8D%E7%B2%BE%E5%BA%A6%E6%B5%AE%E5%8B%95%E5%B
 『ポケモンスリープ』「ねむけパワーが21億4748万3647超でマイナスになる」不具合になぜか“見覚えある”との声あがる。一部の人にやたら馴染み深い数値でマイナスに
 https://automaton-media.com/articles/newsjp/20240330-287967/
 
-なお、JavaScript において表すことが可能な最大の数値 (Number.MAX_VALUE)は21024 - 1、またはおよそ 1.7976931348623157E+308である。
+なお、JavaScript において表すことが可能な最大の数値 (Number.MAX_VALUE)は2^1024 - 1、またはおよそ 1.7976931348623157E+308である。
 これを超える数値は Infinity で表される。
 
 参考:
