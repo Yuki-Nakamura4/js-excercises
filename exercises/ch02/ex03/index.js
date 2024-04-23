@@ -9,12 +9,12 @@ function getUnicodeEscapeSequence(text, normalizationForm) {
   return unicodeEscapeSequence;
 }
 
-const text = "パン";
+const input = "パン";
 
-const nfcUnicodeSequence = getUnicodeEscapeSequence(text, "NFC");
+const nfcUnicodeSequence = getUnicodeEscapeSequence(input, "NFC");
 console.log("NFC Unicodeエスケープシーケンス:", nfcUnicodeSequence);
 // => NFC Unicodeエスケープシーケンス: \u30d1\u30f3
 
-const nfdUnicodeSequence = getUnicodeEscapeSequence(text, "NFD");
+const nfdUnicodeSequence = getUnicodeEscapeSequence(input, "NFD");
 console.log("NFD Unicodeエスケープシーケンス:", nfdUnicodeSequence);
 // => NFD Unicodeエスケープシーケンス: \u30cf\u309a\u30f3
