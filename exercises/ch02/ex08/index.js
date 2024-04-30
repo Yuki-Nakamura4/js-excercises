@@ -1,5 +1,5 @@
-import { parse } from "acorn";
+// import { parse } from "acorn";
 
-export function removeSemicolon(code) {
-
-}
+// export function removeSemicolon(code) {
+    
+// }
