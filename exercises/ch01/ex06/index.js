@@ -11,7 +11,3 @@ export function fib2(number) {
     (Math.pow(phi, number) - Math.pow(1 - phi, number)) / sqrt5,
   );
 }
-
-export function fib3(number) {
-
-}
