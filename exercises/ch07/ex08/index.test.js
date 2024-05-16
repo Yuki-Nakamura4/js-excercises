@@ -1,4 +1,4 @@
-import { reverse } from "./index.ts";
+import { reverse } from "./index";
 
 test("reserve", () => {
   expect(reverse("abc123")).toBe("321cba");
