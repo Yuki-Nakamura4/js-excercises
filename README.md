@@ -1,1 +1,20 @@
+[JavaScript 第7版](https://www.amazon.co.jp/JavaScript-%E7%AC%AC7%E7%89%88-David-Flanagan/dp/4873119707)の各章を読み、それらに関連した問題に解答する(問題は講師陣が作成)  
 
+## 目次
+1章　JavaScriptの概要  
+2章　字句構造  
+3章　型、値、変数  
+4章　式と演算子  
+5章　文  
+6章　オブジェクト  
+7章　配列  
+8章　関数  
+9章　クラス  
+10章　モジュール  
+11章　JavaScript標準ライブラリ  
+12章　イテレータとジェネレータ  
+13章　非同期JavaScript  
+14章　メタプログラミング  
+15章　Webブラウザ上のJavaScript  
+16章　Node上のサーバサイドJavaScript  
+17章　JavaScriptのツールと拡張機能  
