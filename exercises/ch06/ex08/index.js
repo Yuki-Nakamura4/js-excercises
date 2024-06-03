@@ -4,6 +4,7 @@
 export function restrict(target, template) {
   for (const key in target) {
     if (!template.hasOwnProperty(key)) {
+      // テンプレートの独自プロパティに存在しなければ削除
       delete target[key];
     }
   }
@@ -15,6 +16,7 @@ export function substract(target, ...sources) {
   for (const source of sources) {
     for (const key in target) {
       if (source.hasOwnProperty(key)) {
+        // 削除対象指定オブジェクトに存在するプロパティなら削除
         delete target[key];
       }
     }

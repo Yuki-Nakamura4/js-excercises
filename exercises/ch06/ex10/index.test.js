@@ -30,13 +30,12 @@ const obj = {
 };
 
 const answer = {
-  num1,
+  num1, // プロパティ名と値が同じ場合省略可。ES6より導入
   num2,
   foo: obj1.foo,
   bar: obj3.bar,
-  fizz: obj2.fizz,
-  buzz: obj2.buzz,
-  arr: [...arr1, num1, ...arr2],
+  ...obj2,
+  arr: [...arr1, num1, ...arr2], // スプレッド演算子で展開してまとめる
 };
 
 test("ゲッターメソッドが実行されることを確認する", () => {
