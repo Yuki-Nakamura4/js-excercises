@@ -1,5 +1,6 @@
 export function reverse(str) {
   const segments = [];
+  // Intl.Segmenterを使用することで書記素(見た目上の1文字)で分割できる
   for (const segment of new Intl.Segmenter().segment(str)) {
     segments.push(segment.segment);
   }
@@ -7,4 +8,4 @@ export function reverse(str) {
 }
 
 // 参考：https://qiita.com/debiru/items/a5813c8efbae6f2cba72
-// 上記リンクでは文字列を都度結合していたが、文字列は不変のためメモリ効率が悪いと考え配列に要素を格納した
+// 参考：https://zenn.dev/cybozu_frontend/articles/explore-intl-segmenter
