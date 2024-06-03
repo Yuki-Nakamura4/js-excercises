@@ -29,18 +29,23 @@ describe("Object.assign()とassign()が等価であることを確認する", ()
   test("既にプロパティのあるオブジェクトにコピー(同一のプロパティ名あり)", () => {
     expect(Object.assign(obj3, obj1)).toEqual(assign(obj3, obj1));
     expect(obj3).toEqual({ item: "apple", num: 3 }); // itemをコピー元の値で上書き
+    expect(obj1).toEqual({ item: "apple", num: 3 }); // コピー元は変更されない
   });
 
   test("複数のコピー元を引数として渡す", () => {
     expect(Object.assign(obj3, obj1, obj4)).toEqual(assign(obj3, obj1, obj4));
     expect(obj3).toEqual({ item: "banana", num: 3 }); // itemを2つ目のコピー元の値で上書き
+    expect(obj1).toEqual({ item: "apple", num: 3 }); // コピー元は変更されない
+    expect(obj4).toEqual({ item: "banana" }); // コピー元は変更されない
   });
 
   test("コピー元のゲッターが呼び出され、ゲッターのメソッド自体はコピーされないか確認", () => {
     const copiedObj5 = assign({}, obj5);
     expect(copiedObj5).toEqual({ value: 5 });
     // ゲッターメソッドがコピーされていないことを確認
+    // Object.getOwnPropertyDescriptorは与えられたオブジェクトの特定のプロパティの構成を記述したオブジェクトを返す
     const descriptor = Object.getOwnPropertyDescriptor(copiedObj5, "value");
+    // getプロパティでプロパティのゲッター関数にアクセスできる
     expect(descriptor.get).toBeUndefined();
   });
 

@@ -17,10 +17,7 @@ console.log(p.isPrototypeOf(q)); // true
 console.log(Object.prototype.isPrototypeOf(new Object())); // true
 
 console.log(Object.prototype.isPrototypeOf(new Array())); // true
-console.log(Array.prototype.isPrototypeOf(new Array())); // true
 
-console.log(Object.prototype.isPrototypeOf(new Date())); // true
 console.log(Object.prototype.isPrototypeOf(new Date())); // true
 
 console.log(Object.prototype.isPrototypeOf(new Map())); // true
-console.log(Map.prototype.isPrototypeOf(new Map())); // true

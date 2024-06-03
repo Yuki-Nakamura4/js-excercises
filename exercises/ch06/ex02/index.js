@@ -3,8 +3,7 @@ const myPokemon = {
   type: "Electric",
 };
 
-const myInheritedPokemon = Object.create(myPokemon);
+const inheritedPokemon = Object.create(myPokemon);
 
-console.log(Object.getPrototypeOf(myInheritedPokemon) === myPokemon);
+console.log(Object.getPrototypeOf(inheritedPokemon) === myPokemon);
 // true
-

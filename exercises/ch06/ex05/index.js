@@ -15,12 +15,12 @@ for (const prop in inheritedObj) {
 // num
 // str
 
+// プロトタイプは列挙可のプロパティ(num, str)と同名の列挙不可のプロパティをもたせる
 Object.defineProperty(inheritedObj, "num", {
-  enumarable: false,
+  enumerable: false, // enumerableの初期値はfalseなので明示しなくてもよい
 });
-
 Object.defineProperty(inheritedObj, "str", {
-  enumarable: false,
+  enumerable: false,
 });
 
 // numとstrは列挙不可なので、for/inループで列挙されない
