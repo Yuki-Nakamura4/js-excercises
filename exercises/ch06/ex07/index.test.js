@@ -17,6 +17,8 @@ const obj6 = {
     this._value = value;
   },
 };
+const obj7 = Object.create(obj1);
+obj7.price = 100;
 
 describe("Object.assign()とassign()が等価であることを確認する", () => {
   test("空のオブジェクトにコピー", () => {
@@ -56,4 +58,6 @@ describe("Object.assign()とassign()が等価であることを確認する", ()
     const descriptor = Object.getOwnPropertyDescriptor(copiedObj6, "_value");
     expect(descriptor.set).toBeUndefined();
   });
+
+  test("列挙可の独自プロパティのみコピーされるか確認", () => {});
 });

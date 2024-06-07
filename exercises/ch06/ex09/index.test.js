@@ -11,11 +11,11 @@ const obj = {
   },
 };
 
-Object.defineProperty(obj, "sum", { get: obj.sum }); // アクセサプロパティとして再定義
+obj.toJSON = function () {
+  return { ...this, sum: this.sum() };
+};
 
-// JSON.stringifyはオブジェクトをシリアライズするときそのオブジェクトのすべての列挙可なプロパティを列挙し、値を取得する
-// ゲッターメソッドが定義されているプロパティの場合、値を取得するためにそのゲッターメソッドが呼び出される
-test("ゲッターメソッドが実行されることを確認する", () => {
+test("マッチャーに成功することを確認", () => {
   obj.x = 1;
   obj.y = 2;
   expect(JSON.stringify(obj)).toBe(`{"x":1,"y":2,"sum":3}`);

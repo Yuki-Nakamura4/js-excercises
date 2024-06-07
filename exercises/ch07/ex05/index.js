@@ -18,7 +18,8 @@ export function push(arr, num) {
 }
 
 export function shift(arr) {
-  return arr.slice(1);
+  const [, ...rest] = arr; // 分割代入
+  return rest;
 }
 
 export function unshift(arr, num) {

@@ -6,6 +6,3 @@ export function reverse(str) {
   }
   return segments.reverse().join("");
 }
-
-// 参考：https://qiita.com/debiru/items/a5813c8efbae6f2cba72
-// 参考：https://zenn.dev/cybozu_frontend/articles/explore-intl-segmenter
