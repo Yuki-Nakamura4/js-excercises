@@ -1,5 +1,5 @@
 export function counterGroup() {
-  const counters = []; // Array to hold all counters
+  const counters = [];
 
   return {
     newCounter: function () {
@@ -20,6 +20,25 @@ export function counterGroup() {
     },
     total: function () {
       return counters.reduce((sum, counter) => sum + counter.getCount(), 0);
+    },
+    average: function () {
+      if (counters.length === 0) {
+        throw new TypeError("No counters available");
+      }
+      return this.total() / counters.length;
+    },
+    variance: function () {
+      if (counters.length < 2) {
+        throw new TypeError(
+          "At least two counters are required to calculate variance"
+        );
+      }
+      const avg = this.average();
+      const varianceSum = counters.reduce((sum, counter) => {
+        const diff = counter.getCount() - avg;
+        return sum + diff * diff;
+      }, 0);
+      return varianceSum / (counters.length - 1);
     },
   };
 }

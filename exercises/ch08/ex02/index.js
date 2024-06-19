@@ -11,6 +11,15 @@ export const powerRecursive = (x, n) => {
   }
 };
 
+// // 普通の再帰を用いた方法。O(N)
+// export const powerRecursive = (x, n) => {
+//   if (n === 0) {
+//     return 1;
+//   } else {
+//     return x * powerRecursive(x, n - 1);
+//   }
+// };
+
 // ループを用いた方法。O(logN)
 export const powerLoop = (x, n) => {
   let result = 1;
@@ -23,3 +32,12 @@ export const powerLoop = (x, n) => {
   }
   return result;
 };
+
+// // 普通のループを用いた方法。O(N)
+// export const powerLoop = (x, n) => {
+//   let result = 1;
+//   for (let i = 0; i < n; i++) {
+//     result *= x;
+//   }
+//   return result;
+// }
