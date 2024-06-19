@@ -40,11 +40,8 @@ function sumOfEvensIsLargerThan42(array) {
       continue;
     }
     sum += array[i];
-    if (sum >= 42) {
-      return true;
-    }
   }
-  return false;
+  return sum >= 42;
 }
 ```
 
@@ -193,6 +190,7 @@ function sort(
 文字列の書記素を反転させる関数を実装しなさい。例えば "家族 👨‍👨‍👧‍👧" が与えられれば "👨‍👨‍👧‍👧 族家" を返しなさい。
 ヒント: [Intl.Segmenter](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter)
 を使うか ゼロ幅接合子 について調べて実装しなさい。( [Intl.Segmenter](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Intl/Segmenter)を使う場合 tsconfig.js で ES2022 以上であることを確認して使用してください。)
+
 **出題範囲**: 7.8.7
 
 ## 問題 7.9 🖋
@@ -263,6 +261,6 @@ if (this.len >= this.array.length()) {
 }
 ```
 
-ヒント: `push` を $`n`$ 回呼び出したとき、上記の実装では配列を倍々にしていくので再配置は $`log_2 n`$ 回。各再配置での要素のコピー回数は $`1, 2, 4, 8, ..., 2^(log_2 n)`$ 回。再配置の際のコピー回数の総和は $`2^0 + 2^1 + 4^2 + ... + 2^(log_2 n) = ...`$ (等比数列の和の公式を思い出すこと)。この値を $`n`$ で割れば各 `push` の平均時間計算量が求められる。
+ヒント: `push` を $`n`$ 回呼び出したとき、上記の実装では配列を倍々にしていくので再配置は $`log_2 n`$ 回。各再配置での要素のコピー回数は $`1, 2, 4, 8, ..., 2^{log_2 n}`$ 回。再配置の際のコピー回数の総和は $`2^0 + 2^1 + 2^2 + ... + 2^{log_2 n} = ...`$ (等比数列の和の公式を思い出すこと)。この値を $`n`$ で割れば各 `push` の平均時間計算量が求められる。
 
 **出題範囲**: なし

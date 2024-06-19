@@ -54,6 +54,52 @@ describe("counterGroup", () => {
       const c3 = cg.newCounter();
       c3.count();
       expect(cg.total()).toBe(6);
+      c1.reset();
+      expect(cg.total()).toBe(3);
+    });
+  });
+
+  describe("#average", () => {
+    test("It returns average amount of all counters in CounterGroup", () => {
+      const cg = counterGroup();
+      expect(() => cg.average()).toThrowError(TypeError);
+      const c1 = cg.newCounter();
+      c1.count();
+      c1.count();
+      c1.count();
+      expect(cg.average()).toBe(3);
+      const c2 = cg.newCounter();
+      c2.count();
+      c2.count();
+      expect(cg.average()).toBe(2.5);
+      const c3 = cg.newCounter();
+      c3.count();
+      expect(cg.average()).toBe(2);
+      c1.reset();
+      expect(cg.average()).toBe(1);
+    });
+  });
+
+  describe("#variance", () => {
+    test("It returns variance of all counters in CounterGroup", () => {
+      const cg = counterGroup();
+      expect(() => cg.variance()).toThrowError(TypeError);
+      const c1 = cg.newCounter();
+      c1.count();
+      c1.count();
+      c1.count();
+      expect(() => cg.variance()).toThrowError(TypeError);
+      const c2 = cg.newCounter();
+      c2.count();
+      c2.count();
+      expect(cg.variance()).toBe(1.625);
+      const c3 = cg.newCounter();
+      c3.count();
+      expect(cg.variance()).toBeLessThan(1.35); // 1.3333...
+      expect(cg.variance()).toBeGreaterThan(1.3);
+      c1.reset();
+      expect(cg.variance()).toBeLessThan(0.35); // 0.3333...
+      expect(cg.variance()).toBeGreaterThan(0.3);
     });
   });
 
