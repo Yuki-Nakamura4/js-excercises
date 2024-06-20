@@ -28,6 +28,7 @@ export function counterGroup() {
       return this.total() / counters.length;
     },
     variance: function () {
+      // 分散のテストが通らない
       if (counters.length < 2) {
         throw new TypeError(
           "At least two counters are required to calculate variance"
@@ -38,7 +39,8 @@ export function counterGroup() {
         const diff = counter.getCount() - avg;
         return sum + diff * diff;
       }, 0);
-      return varianceSum / (counters.length - 1);
+      return varianceSum / counters.length;
+      // return varianceSum / (counters.length - 1); // 不偏分散の場合
     },
   };
 }
