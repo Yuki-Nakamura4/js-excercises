@@ -1,6 +1,8 @@
 export function addMyCall(f) {
-  f.myCall = function (context, ...args) {
-    return f.bind(context)(...args);
+  // fにmyCallメソッドを追加する
+  f.myCall = function (thisObj, ...args) {
+    // fをthisObjにバインドする
+    return f.bind(thisObj)(...args);
   };
   return f;
 }
