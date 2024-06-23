@@ -109,5 +109,7 @@ export class TypedMap {
 //     if (this.valueType && typeof value !== this.valueType) {
 //       throw new TypeError(`${value} is not of type ${this.valueType}`);
 //     }
+
+//     return super.set(key, value);
 //   }
 // }

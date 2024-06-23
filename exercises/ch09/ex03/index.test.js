@@ -1,10 +1,11 @@
+/* eslint-disable no-undef */
+
 import { C, C2 } from "./index";
 
 test("プライベートフィールド", () => {
   const c = new C();
   expect(c.getX()).toBe(42);
-  // expect(console.log(c.#x)).toBeUndefined();
-  // 上記のコードはエラーになる
+  // expect(console.log(c.#x)).toBeUndefined; // エラーになる;
 });
 
 test("クロージャ", () => {

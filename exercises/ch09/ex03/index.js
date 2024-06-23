@@ -1,5 +1,7 @@
+/* eslint-disable */
+
 export class C {
-  #x = 42;
+  #x = 42; // ESLintに怒られる？ 設定でes2022はtrueになってるはず
 
   getX() {
     return this.#x;

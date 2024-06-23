@@ -20,6 +20,8 @@ export class MagicWarrior extends Warrior {
     return super.attack() + this.mgc;
   }
 }
+
+// 以下はprototypeを使った実装
 // 戦士クラス
 export function Warrior2(atk) {
   this.atk = atk;
@@ -35,7 +37,7 @@ export function MagicWarrior2(atk, mgc) {
   this.mgc = mgc;
 }
 
-Object.setPrototypeOf(MagicWarrior2.prototype, Warrior2.prototype);
+MagicWarrior2.prototype = Object.create(Warrior2.prototype);
 
 MagicWarrior2.prototype.attack = function () {
   return Warrior2.prototype.attack.call(this) + this.mgc;

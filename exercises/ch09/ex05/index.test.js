@@ -10,33 +10,33 @@ import { instanceOf } from "./index";
 
 describe("instanceOf", () => {
   test("多段に継承したクラスのインスタンスと基底クラスのコンストラクタを入力するケース", () => {
-    const c = new C();
-    expect(instanceOf(c, C)).toBe(true); // C のインスタンス
-    expect(instanceOf(c, B)).toBe(true); // B のインスタンス
-    expect(instanceOf(c, A)).toBe(true); // A のインスタンス
+    const c = new C(); // 多段に継承したクラスのインスタンス
+    expect(instanceOf(c, C)).toBe(true);
+    expect(instanceOf(c, B)).toBe(true);
+    expect(instanceOf(c, A)).toBe(true);
   });
 
   test("継承関係にないインスタンスとクラスのコンストラクタを入力するケース", () => {
     const c = new C();
     const y = new Y();
-    expect(instanceOf(c, Y)).toBe(false); // 継承関係にない
-    expect(instanceOf(y, C)).toBe(false); // 継承関係にない
+    expect(instanceOf(c, Y)).toBe(false);
+    expect(instanceOf(y, C)).toBe(false);
   });
 
   test("非オブジェクトを渡した場合のケース", () => {
-    expect(instanceOf(null, A)).toBe(false); // nullはオブジェクトではない
-    expect(instanceOf(undefined, A)).toBe(false); // undefinedはオブジェクトではない
+    expect(instanceOf(null, A)).toBe(false);
+    expect(instanceOf(undefined, A)).toBe(false);
   });
 
   test("プリミティブを渡した場合のケース", () => {
-    expect(instanceOf(123, Number)).toBe(false); // numberはオブジェクトではない
-    expect(instanceOf("string", String)).toBe(false); // stringはオブジェクトではない
-    expect(instanceOf(true, Boolean)).toBe(false); // booleanはオブジェクトではない
+    expect(instanceOf(123, Number)).toBe(false);
+    expect(instanceOf("string", String)).toBe(false);
+    expect(instanceOf(true, Boolean)).toBe(false);
   });
 
   test("インスタンスと関数ではないものを渡した場合のケース", () => {
     const obj = {};
-    expect(instanceOf(obj, {})).toBe(false); // {} は関数ではない
-    expect(instanceOf(obj, [])).toBe(false); // [] は関数ではない
+    expect(instanceOf(obj, {})).toBe(false);
+    expect(instanceOf(obj, [])).toBe(false);
   });
 });

@@ -10,10 +10,12 @@ export class C {
     };
   }
 
+  // 静的メソッド。クラスから直接呼び出す
   static method() {
     return 1;
   }
 
+  // インスタンスメソッド。インスタンスから呼び出す
   method() {
     return 2;
   }

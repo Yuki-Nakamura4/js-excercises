@@ -4,10 +4,12 @@ export class AlarmClock {
     this.state = "normal";
   }
 
+  // 任意の状態を設定する(テスト用)
   setState(state) {
     this.state = state;
   }
 
+  // 任意の状態を取得する(テスト用)
   getState() {
     return this.state;
   }

@@ -3,6 +3,7 @@ export function instanceOf(object, constructor) {
   if (object === null || typeof object !== "object") {
     return false;
   }
+
   let prototype = Object.getPrototypeOf(object);
 
   while (prototype !== null) {

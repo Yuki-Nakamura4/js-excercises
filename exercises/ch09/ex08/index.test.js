@@ -1,76 +1,50 @@
 import { AlarmClock } from "./index";
 
-describe("AlarmClock", () => {
-  let clock;
+describe("AlarmClockの遷移のテスト", () => {
+  let alarmClock;
 
   beforeEach(() => {
-    clock = new AlarmClock();
+    alarmClock = new AlarmClock();
   });
 
-  function testTransition(initialState, event, expectedState, expectedAction) {
-    clock.setState(initialState);
-    const action = event();
-    expect(clock.getState()).toBe(expectedState);
-    expect(action).toBe(expectedAction);
-  }
-
-  test("initial state is normal", () => {
-    expect(clock.getState()).toBe("normal");
+  test("通常 => アラームセット", () => {
+    expect(alarmClock.setAlarm()).toBe("none");
+    expect(alarmClock.getState()).toBe("alarmSet");
   });
 
-  describe("normal state", () => {
-    test("setAlarm transitions to alarmSet with no action", () => {
-      testTransition("normal", () => clock.setAlarm(), "alarmSet", "none");
-    });
+  test("アラームセット => 通常", () => {
+    alarmClock.setState("alarmSet");
+    expect(alarmClock.cancelAlarm()).toBe("none");
+    expect(alarmClock.getState()).toBe("normal");
   });
 
-  describe("alarmSet state", () => {
-    test("cancelAlarm transitions to normal with no action", () => {
-      testTransition("alarmSet", () => clock.cancelAlarm(), "normal", "none");
-    });
-
-    test("reachedToAlarmTime transitions to alarmSounding with soundAlarm action", () => {
-      testTransition(
-        "alarmSet",
-        () => clock.reachedToAlarmTime(),
-        "alarmSounding",
-        "soundAlarm"
-      );
-    });
+  test("アラームセット => アラーム鳴動", () => {
+    alarmClock.setState("alarmSet");
+    expect(alarmClock.reachedToAlarmTime()).toBe("soundAlarm");
+    expect(alarmClock.getState()).toBe("alarmSounding");
   });
 
-  describe("alarmSounding state", () => {
-    test("cancelAlarm transitions to normal with stopAlarm action", () => {
-      testTransition(
-        "alarmSounding",
-        () => clock.cancelAlarm(),
-        "normal",
-        "stopAlarm"
-      );
-    });
-
-    test("snooze transitions to snoozing with stopAlarm action", () => {
-      testTransition(
-        "alarmSounding",
-        () => clock.snooze(),
-        "snoozing",
-        "stopAlarm"
-      );
-    });
+  test("アラーム鳴動 => スヌーズ", () => {
+    alarmClock.setState("alarmSounding");
+    expect(alarmClock.snooze()).toBe("stopAlarm");
+    expect(alarmClock.getState()).toBe("snoozing");
   });
 
-  describe("snoozing state", () => {
-    test("cancelAlarm transitions to normal with no action", () => {
-      testTransition("snoozing", () => clock.cancelAlarm(), "normal", "none");
-    });
+  test("スヌーズ => アラーム鳴動", () => {
+    alarmClock.setState("snoozing");
+    expect(alarmClock.elapseSnoozeTime()).toBe("soundAlarm");
+    expect(alarmClock.getState()).toBe("alarmSounding");
+  });
 
-    test("elapseSnoozeTime transitions to alarmSounding with soundAlarm action", () => {
-      testTransition(
-        "snoozing",
-        () => clock.elapseSnoozeTime(),
-        "alarmSounding",
-        "soundAlarm"
-      );
-    });
+  test("アラーム鳴動 => 通常", () => {
+    alarmClock.setState("alarmSounding");
+    expect(alarmClock.cancelAlarm()).toBe("stopAlarm");
+    expect(alarmClock.getState()).toBe("normal");
+  });
+
+  test("スヌーズ => 通常", () => {
+    alarmClock.setState("snoozing");
+    expect(alarmClock.cancelAlarm()).toBe("none");
+    expect(alarmClock.getState()).toBe("normal");
   });
 });
