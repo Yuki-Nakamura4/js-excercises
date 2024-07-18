@@ -17,7 +17,7 @@ module.exports = {
 ## 名前変更を伴うインポート
 
 - インポート側の名前も変更される(そうでないと整合が取れなくなるため)
-- エイリアスはインポート側で独立して勝手につけているものなので当然影響なし
+- エイリアスはインポート側で独立して勝手につけているものなので影響なし
 
 ```javascript
 import { changedPerson as myPerson } from "./human/person.js";
