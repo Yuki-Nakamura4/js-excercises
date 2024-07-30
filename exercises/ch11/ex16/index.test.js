@@ -22,7 +22,7 @@ describe("retryWithExponentialBackoff", () => {
     };
 
     retryWithExponentialBackoff(func, 5, callback);
-    jest.runAllTimers(); // すべてのタイマーを実行
+    jest.runAllTimers();
   });
 
   test("should fail after reaching max retries", (done) => {
@@ -39,6 +39,6 @@ describe("retryWithExponentialBackoff", () => {
     };
 
     retryWithExponentialBackoff(func, 5, callback);
-    jest.runAllTimers(); // すべてのタイマーを実行
+    jest.runAllTimers();
   });
 });
