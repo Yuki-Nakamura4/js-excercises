@@ -3,14 +3,7 @@ export function modifyUrl({ base, addQuery = [], path }) {
     const url = new URL(base);
 
     if (path) {
-      if (path.startsWith("./")) {
-        // 相対パスの場合
-        url.pathname =
-          url.pathname.replace(/\/[^/]*$/, "/") + path.substring(2);
-      } else {
-        // 絶対パスの場合
-        url.pathname = path;
-      }
+      url.pathname = path;
     }
 
     addQuery.forEach(([key, value]) => {
