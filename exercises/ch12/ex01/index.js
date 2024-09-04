@@ -31,7 +31,6 @@ console.log(typeof gen.throw === "function"); // => true
 console.log(typeof gen[Symbol.iterator] === "function"); // => true
 
 console.log(gen.next()); // => counterGen: next { value: 1, done: false }
-
 console.log(gen.next()); // => counterGen: next { value: 2, done: false }
 console.log(gen.next()); // => counterGen: next { value: 3, done: false }
 console.log(gen.next()); // => counterGen: finally { value: undefined, done: true }
