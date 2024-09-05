@@ -12,17 +12,16 @@ describe("walのテスト", () => {
       isDirectory: true,
     });
     expect(generator.next().value).toEqual({
-      path: "dir2",
-      isDirectory: true,
-    });
-
-    expect(generator.next().value).toEqual({
       path: "dir1/file1.txt",
       isDirectory: false,
     });
     expect(generator.next().value).toEqual({
       path: "dir1/file2.txt",
       isDirectory: false,
+    });
+    expect(generator.next().value).toEqual({
+      path: "dir2",
+      isDirectory: true,
     });
     expect(generator.next().value).toEqual({
       path: "dir2/file3.txt",
