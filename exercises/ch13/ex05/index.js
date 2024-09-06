@@ -18,7 +18,7 @@ export function g1() {
     });
 }
 
-// wait関数はPromiseを返すので、Promiseコンストラクタを使わなくてよい
+// wait関数はPromiseを返すので、Promiseコンストラクタを使わなくてよい。
 export function g2() {
   return wait(1000)
     .then(() => console.log("A"))
@@ -39,7 +39,7 @@ export function g3() {
     ]);
   }
 
-  // Promiseチェーンで非同期処理の結果を直接次の処理に渡せる
+  // 不要な変数宣言を無くして、Promiseチェーンを使う形に書き換えた。
   return fetchUser().then((user) =>
     fetchUserFriends(user).then((friends) => {
       console.log(`${user.name} has ${friends.length} friends!`);
