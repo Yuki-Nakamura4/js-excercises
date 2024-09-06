@@ -1,7 +1,7 @@
-import fs from "fs";
-import path from "path";
+import fs from 'fs';
+import path from 'path';
 
-function* walkRecursive(rootPath, currentPath = rootPath) {
+export function* walk(rootPath, currentPath = rootPath) {
   // ファイルやディレクトリに関する情報を取得
   const stats = fs.statSync(currentPath);
 
@@ -12,15 +12,10 @@ function* walkRecursive(rootPath, currentPath = rootPath) {
     const directoryContents = fs.readdirSync(currentPath);
     for (const content of directoryContents) {
       // 再帰呼び出しで現在のディレクトリ内のファイル/ディレクトリを探索する
-      yield* walkRecursive(rootPath, path.join(currentPath, content));
+      yield* walk(rootPath, path.join(currentPath, content));
     }
   } else {
     // ルートパスからの相対パスをyieldする
     yield { path: path.relative(rootPath, currentPath), isDirectory: false };
   }
-}
-
-// 再帰的ジェネレータをラップするジェネレータ
-export function* walk(rootPath) {
-  yield* walkRecursive(rootPath);
 }

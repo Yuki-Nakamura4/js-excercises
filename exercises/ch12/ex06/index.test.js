@@ -1,3 +1,4 @@
+import path from "path";
 import { walk } from ".";
 
 describe("walのテスト", () => {
@@ -12,11 +13,11 @@ describe("walのテスト", () => {
       isDirectory: true,
     });
     expect(generator.next().value).toEqual({
-      path: "dir1/file1.txt",
+      path: path.normalize("dir1/file1.txt"),
       isDirectory: false,
     });
     expect(generator.next().value).toEqual({
-      path: "dir1/file2.txt",
+      path: path.normalize("dir1/file2.txt"),
       isDirectory: false,
     });
     expect(generator.next().value).toEqual({
@@ -24,11 +25,11 @@ describe("walのテスト", () => {
       isDirectory: true,
     });
     expect(generator.next().value).toEqual({
-      path: "dir2/file3.txt",
+      path: path.normalize("dir2/file3.txt"),
       isDirectory: false,
     });
     expect(generator.next().value).toEqual({
-      path: "dir2/file4.txt",
+      path: path.normalize("dir2/file4.txt"),
       isDirectory: false,
     });
     expect(generator.next().done).toBe(true);
