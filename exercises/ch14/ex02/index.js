@@ -1,11 +1,19 @@
 export class MyArrayLike {
-  // TODO
+  constructor(length = 0) {
+    this.length = length;
+  }
 }
 
+// Arrayを継承したMyArrayクラスを定義
 export class MyArray extends Array {
   constructor(items) {
     super(...items);
   }
 
-  // TODO
+  // Symbol.speciesプロパティをオーバーライドする。
+  // MaArrayのmap()やslice()などのメソッドを呼び出した際に、
+  // MyArrayLikeクラスのインスタンスが返るようになる。
+  static get [Symbol.species]() {
+    return MyArrayLike;
+  }
 }

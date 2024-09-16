@@ -15,16 +15,16 @@ describe("IgnoreAccentPattern", () => {
   describe("match", () => {
     test("found test", () => {
       expect(
-        "Coffee Café".match(new IgnoreAccentPattern("Cafe")),
+        "Coffee Café".match(new IgnoreAccentPattern("Cafe"))
       ).toStrictEqual("Coffee Cafe".match("Cafe"));
       expect(
-        "Coffee Café".match(new IgnoreAccentPattern(/Cafe/g)),
+        "Coffee Café".match(new IgnoreAccentPattern(/Cafe/g))
       ).toStrictEqual(["Cafe"]);
       expect(
-        "Coffee Café".match(new IgnoreAccentPattern(/Café/g)),
+        "Coffee Café".match(new IgnoreAccentPattern(/Café/g))
       ).toStrictEqual(["Cafe"]);
       expect(
-        "Coffee Café".match(new IgnoreAccentPattern(/[a-e]/g)),
+        "Coffee Café".match(new IgnoreAccentPattern(/[a-e]/g))
       ).toStrictEqual(["e", "e", "a", "e"]);
       expect("Coffee Café".match(new IgnoreAccentPattern(/é/g))).toStrictEqual([
         "e",
