@@ -61,4 +61,21 @@ describe("createLoggingProxyのテスト", () => {
 
     expect(callHistory.length).toBe(0);
   });
+
+  test("thisが正しく設定されること", () => {
+    const obj = {
+      value: 42,
+      getValue() {
+        return this.value;
+      },
+    };
+
+    const { proxy, callHistory } = createLoggingProxy(obj);
+    const result = proxy.getValue(); // objのthisが参照できなければエラーになる
+
+    expect(result).toBe(42);
+    expect(callHistory.length).toBe(1);
+    expect(callHistory[0].methodName).toBe("getValue");
+    expect(callHistory[0].parameters).toEqual([]);
+  });
 });

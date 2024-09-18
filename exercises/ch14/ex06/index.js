@@ -9,8 +9,10 @@ export function createLoggingProxy(obj) {
       // 元のメソッドを取得
       const originalMethod = target[property];
       return function (...args) {
-        // メソッドをこのオブジェクトにバインドして呼び出す
-        const result = originalMethod.apply(this, args);
+        // 元のメソッドを呼び出し、結果を取得
+        // applyを使用しているのは、実行時のthisを正しく設定するため
+        // thisに関するテストケースを追加してみたが、originalMethod(...args)では通らなかった
+        const result = originalMethod.apply(target, args);
         // メソッド呼び出し履歴に追加
         callHistory.push({
           timestamp: new Date(),
