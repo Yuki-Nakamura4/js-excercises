@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>お使いのPCに問題が発生しています</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fff3cd;
+        color: #856404;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+      .warning-box {
+        border: 2px solid red;
+        padding: 20px;
+        background-color: #f8d7da;
+        color: #721c24;
+        font-size: 18px;
+        margin: 20px auto;
+        max-width: 500px;
+      }
+      h1 {
+        color: red;
+        font-size: 28px;
+      }
+      #info {
+        font-weight: bold;
+        color: #343a40;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>【警告】</h1>
+    <p>お使いのPCの情報が漏洩しました。</p>
+    <div class="warning-box">
+      <p>以下の情報が取得されました</p>
+      <div id="info"></div>
+    </div>
+    <p>
+      この問題を解決するには、<a href="mailto:malicious@dark.com"
+        >malicious@dark.com</a
+      >にご連絡ください。
+    </p>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const infoDiv = document.getElementById("info");
+        const data = [
+          `ユーザーエージェント: ${navigator.userAgent}`,
+          `プラットフォーム: ${navigator.platform}`,
+          `言語設定: ${navigator.language}`,
+          `オンライン状態: ${navigator.onLine ? "オンライン" : "オフライン"}`,
+          `CPUコア数: ${navigator.hardwareConcurrency}`,
+          `メモリ容量: ${navigator.deviceMemory || "不明"} GB`,
+          `ブラウザバージョン: ${navigator.appVersion}`,
+        ];
+
+        infoDiv.innerHTML = data.map((item) => `<p>${item}</p>`).join("");
+      });
+    </script>
+  </body>
+</html>
