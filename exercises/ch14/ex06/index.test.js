@@ -78,4 +78,17 @@ describe("createLoggingProxyのテスト", () => {
     expect(callHistory[0].methodName).toBe("getValue");
     expect(callHistory[0].parameters).toEqual([]);
   });
+
+  test("メソッドではないプロパティへのアクセスは記録されないこと", () => {
+    const obj = {
+      value: 42,
+    };
+
+    const { proxy, callHistory } = createLoggingProxy(obj);
+    const result = proxy.value;
+
+    expect(result).toBe(42);
+    expect(callHistory.length).toBe(0);
+  });
+
 });
