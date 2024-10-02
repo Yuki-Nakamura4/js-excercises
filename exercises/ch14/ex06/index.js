@@ -12,7 +12,6 @@ export function createLoggingProxy(obj) {
       if (typeof value === 'function') {
         return function (...args) {
           // 元のメソッドを呼び出し、結果を取得
-          // applyを使用し、実行時のthisを正しく設定する
           const result = value.apply(target, args);
           // メソッド呼び出し履歴に追加
           callHistory.push({
