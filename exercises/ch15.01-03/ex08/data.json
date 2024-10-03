@@ -1,4 +1,4 @@
 {
-  "name": "script>alert('XSS Attack!');</script>",
+  "name": "<img src='#' onerror='alert(\"XSS Attack!\")'>",
   "age": 50
 }
