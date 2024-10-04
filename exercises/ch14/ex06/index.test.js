@@ -16,7 +16,9 @@ describe("createLoggingProxyのテスト", () => {
     expect(callHistory[0].parameters).toEqual(["太郎"]);
   });
 
-  test("複数のメソッド呼び出しが記録されること", () => {
+  // TODO: 複数回のメソッド呼び出しのテストを追加
+
+  test("複数種類のメソッド呼び出しが記録されること", () => {
     const obj = {
       add(a, b) {
         return a + b;

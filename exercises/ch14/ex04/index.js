@@ -11,8 +11,6 @@ export class Hiragana {
   [Symbol.toPrimitive](hint) {
     if (hint === "number") {
       return this.code;
-    } else if (hint === "string") {
-      return this.char;
     } else {
       return this.char;
     }

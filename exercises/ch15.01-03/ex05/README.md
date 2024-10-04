@@ -1,3 +1,21 @@
+# 模範回答
+
+## index1.html
+
+async + loaded
+
+DOMContentLoadedはDOMの読みこみが完了したタイミングで実行されてしまうため、ライブラリの読みこみ完了を待つためにはloadedでラップする必要がある。
+
+## index2.html
+
+defer
+
+すべてのDOMが読みこまれてから実行できれば良い。
+DOMContentLoadedイベントよりdeferの方がタイミングが早いのでdefer?
+
+
+# 自己回答
+
 ## index.html1
 
 2, 3, 4でHelloが表示された。
