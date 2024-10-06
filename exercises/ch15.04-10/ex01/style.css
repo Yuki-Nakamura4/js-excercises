@@ -1,3 +1,157 @@
-.completed {
-  text-decoration: line-through;
+/* 
+全体のスタイル。背景色をグレーにし、要素が横並びになりかつ垂直方向中央のラインに揃うようにしている。
+いらすと屋の回転寿司の画像を任意の位置に配置するために、position: relative; を設定している。
+*/
+body {
+  background-color: #f4f4f9;
+  display: flex; /* 要素を横並びに配置 */
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/*
+::before擬似要素を使用してbody 要素の前にコンテンツを挿入することで、回転寿司の画像を背景に設定している。
+position:absoluteを使用し、親要素(body)の左上からの位置で指定している。そのため画面サイズが変わると位置がズレてしまう。
+position:absoluteを使うとz-indexが有効になるため、z-index: -1;を設定して他の要素の背後に配置している。
+*/
+body::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 300px;
+  height: 300px;
+  background-image: url("./sushi-family.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: -1;
+}
+
+/* タスク入力欄とボタンをまとめたスタイル。横並びに配置している。 */
+#new-todo-form {
+  display: flex;
+  margin-top: 20px;
+}
+
+/* 新しいタスク入力フィールドのスタイル。幅や位置、角丸などを指定。 */
+#new-todo {
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 300px;
+  margin-right: 10px;
+}
+
+/* ボタンのスタイル。大きさ、色、角丸などを指定。。 */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: #ffffff;
+}
+
+/* ボタンのホバー時のスタイル。背景色を濃く暗い緑し、指の形のカーソルにしている。*/
+button:hover {
+  background-color: #218838;
+  cursor: pointer;
+}
+
+/*
+寿司のレーン(タスクリスト)のスタイル。。overflow:hiddenでスクロールを無効化。
+
+linear-gradientで線形グラデーションを適用し、回転寿司のレーンっぽくしている。
+hightが100%だと画面より内側で終わってしまったため、105%に設定した。
+*/
+#todo-list {
+  width: 400px;
+  height: 105%;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(
+    to bottom,
+    #e0e0e0 25%,
+    #f4f4f9 25%,
+    #f4f4f9 75%,
+    #e0e0e0 75%
+  );
+  border: 2px solid #ccc;
+  margin-left: 50px;
+}
+
+/* 
+d寿司(タスク)のスタイル。
+画面下から画面上まで移動するアニメーションを12秒かけて等速で行い、それを無限回繰り返す。
+ */
+li {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  position: absolute;
+  width: 80%;
+  animation: slideUpAndDown 12s linear infinite;
+}
+
+/*
+寿司(タスク)が流れるアニメーションのキーフレーム。
+開始時点はtranslateY(100vh);なので、画面下からスタートする。
+終了時点はtranslateY(-100vh);なので、画面上に到達する。
+*/
+@keyframes slideUpAndDown {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(-100vh);
+  }
+}
+
+/* 寿司(タスク)のビュー部分のスタイル。中の要素を横並びで左端と右端に配置している。 */
+li .view {
+  width: 100%;
+  padding: 0px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* チェックボックスのスタイル。もはやタスクではないので不要。容赦なく非表示。 */
+li .toggle {
+  display: none;
+}
+
+/* 寿司(タスク)のたべる(削除)ボタンのスタイル。元々の×ボタンをcolor: transparent;で透明にしている。
+ */
+li .destroy {
+  background: none;
+  border: none;
+  color: transparent;
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  margin-right: 10px;
+}
+
+/* 寿司(タスク)のたべる(削除)ボタンのスタイル。
+::before擬似要素で「たべる」という文字を追加することで、元々の削除ボタンを上書きしている。
+寿司の右端の中央に配置されるようにし、white-space: nowrap;で文字の自動改行を防いでいる。 */
+li .destroy::before {
+  content: "たベる";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-weight: 500;
+  background-color: #df3745;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 18px;
+  white-space: nowrap;
 }

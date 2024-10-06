@@ -1,16 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <title>Simple ToDo</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <script type="module" src="/ch15.04-10/ex01/index.js"></script>
-    <link rel="stylesheet" href="/ch15.04-10/ex01/style.css" />
+    <script type="module" src="./index.js"></script>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <form id="new-todo-form">
-      <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      <button>Add</button>
+      <input
+        type="text"
+        id="new-todo"
+        placeholder="好きなお寿司を入力してください"
+      />
+      <button>注文</button>
     </form>
     <ul id="todo-list">
       <!-- NOTE: 以下のような要素を JavaScript で動的に追加する
