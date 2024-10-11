@@ -4,7 +4,7 @@
 */
 body {
   background-color: #f4f4f9;
-  display: flex; /* 要素を横並びに配置 */
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
