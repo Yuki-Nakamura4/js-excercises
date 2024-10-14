@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>inline-circle test</title>
+  </head>
+  <body>
+    <p>
+      The document has one marble: <inline-circle></inline-circle>. The HTML
+      parser instantiates two more marbles:
+      <inline-circle diameter="1.2em" color="blue"></inline-circle>
+      <inline-circle diameter=".6em" color="gold"></inline-circle>. How many
+      marbles does the document contain?
+    </p>
+    <script>
+      customElements.define(
+        "inline-circle",
+        class InlineCircle extends HTMLElement {
+          connectedCallback() {
+            this.style.display = "inline-block";
+            this.style.borderRadius = "50%";
+            this.style.border = "solid black 1px";
+            this.style.transform = "translateY(10%)";
+            this.style.opacity = "0.6"; // 追加。透明度を設定
+            this.style.transform = `translateY(30px)`; // 追加。下に位置を移動
+
+            if (!this.style.width) {
+              this.style.width = "0.8em";
+              this.style.height = "0.8em";
+            }
+          }
+
+          static get observedAttributes() {
+            return ["diameter", "color"];
+          }
+
+          attributeChangedCallback(name, oldValue, newValue) {
+            switch (name) {
+              case "diameter":
+                this.style.width = newValue;
+                this.style.height = newValue;
+                break;
+              case "color":
+                this.style.backgroundColor = newValue;
+                break;
+            }
+          }
+
+          get diameter() {
+            return this.getAttribute("diameter");
+          }
+          set diameter(value) {
+            this.setAttribute("diameter", value);
+          }
+          get color() {
+            return this.getAttribute("color");
+          }
+          set color(value) {
+            this.setAttribute("color", value);
+          }
+        }
+      );
+    </script>
+  </body>
+</html>
