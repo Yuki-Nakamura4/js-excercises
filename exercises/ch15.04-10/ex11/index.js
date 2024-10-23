@@ -44,5 +44,16 @@ form.addEventListener("submit", (e) => {
 });
 
 window.addEventListener("hashchange", () => {
-  // ここを実装してね
+  switch (location.hash) {
+    case "#/completed":
+      // 条件に合うタスクの配列を非破壊的に生成し、それをレンダリングする
+      renderTodos(todos.filter((todo) => todo.completed));
+      break;
+    case "#/active":
+      renderTodos(todos.filter((todo) => !todo.completed));
+      break;
+    default:
+      renderTodos(todos);
+      break;
+  }
 });
