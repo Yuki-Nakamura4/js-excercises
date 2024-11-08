@@ -252,7 +252,10 @@ async function readBodyJson(req) {
 // JSON レスポンスを返す関数
 function respondJson(res, status, data = undefined) {
   console.log("response:", status, data);
-  res.writeHead(status, { "Content-Type": "application/json; charset=UTF-8" });
+  res.writeHead(status, {
+    "Content-Type": "application/json; charset=UTF-8",
+    "Access-Control-Allow-Origin": "*",
+  });
   if (data) {
     res.end(JSON.stringify(data));
   } else {
@@ -260,10 +263,26 @@ function respondJson(res, status, data = undefined) {
   }
 }
 
+// プリフライトリクエストを処理する関数
+function handleOptions(req, res) {
+  res.writeHead(204, {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET, POST, PATCH, DELETE, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+  });
+  res.end();
+}
+
 // ルーティングを行う関数
 function routes(...routeHandlers) {
   return async (req, res) => {
     console.log("request:", req.method, req.url);
+
+    // プリフライトリクエストの処理
+    if (req.method === "OPTIONS") {
+      handleOptions(req, res);
+      return;
+    }
 
     // クエリパラメータを含む URL をパース
     const url = new URL(`http://localhost${req.url}`);
