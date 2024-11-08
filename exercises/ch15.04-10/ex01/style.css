@@ -9,6 +9,7 @@ body {
   align-items: center;
   height: 100vh;
   overflow: hidden;
+  position: relative;
 }
 
 /*
@@ -72,13 +73,11 @@ hightが100%だと画面より内側で終わってしまったため、105%に�
   height: 105%;
   overflow: hidden;
   position: relative;
-  background: linear-gradient(
-    to bottom,
-    #e0e0e0 25%,
-    #f4f4f9 25%,
-    #f4f4f9 75%,
-    #e0e0e0 75%
-  );
+  background: linear-gradient(to bottom,
+      #e0e0e0 25%,
+      #f4f4f9 25%,
+      #f4f4f9 75%,
+      #e0e0e0 75%);
   border: 2px solid #ccc;
   margin-left: 50px;
 }
@@ -107,6 +106,7 @@ li {
   0% {
     transform: translateY(100vh);
   }
+
   100% {
     transform: translateY(-100vh);
   }

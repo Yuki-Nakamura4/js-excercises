@@ -64,14 +64,14 @@ function updateGrid(grid) {
       if (grid[row][col]) {
         // 生きているセル
         if (liveNeighbors < 2 || liveNeighbors > 3) {
-          // 2個未満なら過疎、3個以上なら過密で死亡
+          // 2個未満なら過疎、3個より多ければ過密で死亡
           nextGrid[row][col] = false;
         }
       } else {
         // 死んでいるセル
         if (liveNeighbors === 3) {
           // ちょうど3つの生きているセルが隣接していれば再生
-          nextGrid[row][col] = true; // 再生
+          nextGrid[row][col] = true;
         }
       }
     }

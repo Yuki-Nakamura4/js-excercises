@@ -33,6 +33,7 @@ document.getElementById("image").addEventListener("change", (event) => {
     const outputData = new Uint8ClampedArray(data.length);
 
     // 5x5 のガウシアンカーネル（重み行列）
+    // 本来はガウス関数を使って重みを計算するが、ここでは簡単のために固定値を使用
     const kernel = [
       [1, 4, 6, 4, 1],
       [4, 16, 24, 16, 4],
