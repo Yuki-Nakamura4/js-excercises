@@ -5,9 +5,14 @@ const input = document.querySelector("#new-todo");
 document.addEventListener("DOMContentLoaded", async () => {
   // TODO: ここで API を呼び出してタスク一覧を取得し、
   // 成功したら取得したタスクを appendToDoItem で ToDo リストの要素として追加しなさい
-  const tasks = await fetch("http://localhost:3000/api/tasks").then((res) => res.json());
-  for (const task of tasks.items) {
-    console.log(task);
+  const response = await fetch("http://localhost:3000/api/tasks");
+  if (!response.ok) {
+    throw new Error("Failed to fetch tasks");
+  }
+  const data = await response.json();
+  const tasks = data.items;
+
+  for (const task of tasks) {
     appendToDoItem(task);
   }
 });
@@ -52,9 +57,11 @@ function appendToDoItem(task) {
   const label = document.createElement("label");
   label.textContent = task.name;
   label.style.textDecorationLine = "none";
+  label.style.textDecorationLine = task.status === "completed" ? "line-through" : "none"; // 初期状態を反映
 
   const toggle = document.createElement("input");
   toggle.type = "checkbox";
+  toggle.checked = task.status === "completed"; // 初期状態を設定
   // TODO: toggle が変化 (change) した際に API を呼び出してタスクの状態を更新し
   // 成功したら label.style.textDecorationLine を変更しなさい
   toggle.addEventListener("change", async () => {
@@ -63,7 +70,7 @@ function appendToDoItem(task) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ completed: toggle.checked }),
+      body: JSON.stringify({ status: toggle.checked ? "completed" : "active" }),
     });
     if (!response.ok) {
       alert("Failed to update the task");
@@ -93,4 +100,6 @@ function appendToDoItem(task) {
   // TODO: elem 内に toggle, label, destroy を追加しなさい
   elem.append(toggle, label, destroy);
   list.prepend(elem);
+  console.log(document.cookie);
+
 }
