@@ -53,7 +53,9 @@ document.getElementById("image").addEventListener("change", (event) => {
         // カーネルを適用してぼかし処理
         for (let ky = -2; ky <= 2; ky++) {
           for (let kx = -2; kx <= 2; kx++) {
+            // 2次元配列のインデックスを1次元配列のインデックスに変換(rgbaなので4倍する)
             const pixelIndex = ((y + ky) * width + (x + kx)) * 4;
+            // カーネルの重みを取得
             const weight = kernel[ky + 2][kx + 2];
 
             r += data[pixelIndex] * weight;
