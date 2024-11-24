@@ -9,8 +9,6 @@ function retryWithExponentialBackoff(func, maxRetry, callback) {
     try {
       const response = await func();
       if (response && response.status === 200) {
-        console.log("success");
-        console.log(response);
         callback(true, response);
       } else if (
         response &&
@@ -33,7 +31,7 @@ function retryWithExponentialBackoff(func, maxRetry, callback) {
   tryFunc();
 }
 
-function fetchWithTimeout(url, options = { timeout: 3000 }) {
+function fetchWithTimeout(url, options = {}) {
   if (options.timeout) {
     const controller = new AbortController();
     options.signal = controller.signal;
