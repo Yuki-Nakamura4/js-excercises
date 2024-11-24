@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>WebSocket Request/Response</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="text" id="request1" placeholder="Enter request 1" />
+      <button onclick="sendRequestFromInput('request1')">Send Request 1</button>
+      <div id="response1"></div>
+    </div>
+    <div>
+      <input type="text" id="request2" placeholder="Enter request 2" />
+      <button onclick="sendRequestFromInput('request2')">Send Request 2</button>
+      <div id="response2"></div>
+    </div>
+    <div>
+      <input type="text" id="request3" placeholder="Enter request 3" />
+      <button onclick="sendRequestFromInput('request3')">Send Request 3</button>
+      <div id="response3"></div>
+    </div>
+  </body>
+</html>
