@@ -44,6 +44,7 @@ async function serveContentsHandler(url, _req, res) {
 // CSP のヘッダを返すミドルウェア
 function cspMiddleware(_url, req, res) {
   // TODO: CSP ヘッダを設定する
+  // world.jsも実行されてしまう。。
   // res.setHeader("Content-Security-Policy", "TODO");
   return true;
 }
