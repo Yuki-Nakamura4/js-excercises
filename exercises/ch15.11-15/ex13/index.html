@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI チャット</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+      }
+      #chat {
+        border: 1px solid #ccc;
+        padding: 10px;
+        height: 400px;
+        overflow-y: scroll;
+        margin-bottom: 10px;
+      }
+      .message {
+        margin: 5px 0;
+      }
+      .user {
+        text-align: right;
+        color: blue;
+      }
+      .ai {
+        text-align: left;
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>AI チャット</h1>
+    <div id="chat"></div>
+    <input type="text" id="input" placeholder="メッセージを入力" />
+    <button id="send">送信</button>
+
+    <script src="chat.js"></script>
+  </body>
+</html>
