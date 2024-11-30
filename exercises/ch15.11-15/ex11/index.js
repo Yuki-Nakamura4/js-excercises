@@ -1,3 +1,5 @@
+// 教科書のコードそのまま
+
 /* 
 /* キャンバスや画像の矩形を表すクラス。
 /* Tileを使ってキャンバスを領域に分割し、ワーカーが独立して処理できるようにする。  
@@ -104,19 +106,28 @@ class WorkerPool {
   }
 }
 
+/* 描画に必要な状態情報を保持するクラス。
+/* cxとcyyプロパティは、画像の中心となる不起訴平面上の点を示す。
+/* perPixelプロパティには、複素数の十数部と虚数部が画像のピクセルごとにどれだけ変化するかを指定する。
+/* maxIterationsプロパティは、集合を計算するためにどれだけ処理を行うかを指定する。
+/* 数値が大きいほど計算量は多くなるが、くっきりとした画像が得られる。
+/*
+/* このクラスのオブジェクトは、history.pushState()で使われる。
+/* このオブジェクトを使って、ブックマークされたURLやシェアされたURLから必要な状態を読み取る。
+*/
 class PageState {
   static initialState() {
-    let s = new PageState();
+    const s = new PageState();
     s.cx = -0.5;
     s.cy = 0;
     s.perPixel = 3 / window.innerHeight;
-    s.maxIterations = 500;
+    s.maxIterations = 2000;
     return s;
   }
 
   static fromURL(url) {
-    let s = new PageState();
-    let u = new URL(url);
+    const s = new PageState();
+    const u = new URL(url);
     s.cx = parseFloat(u.searchParams.get("cx"));
     s.cy = parseFloat(u.searchParams.get("cy"));
     s.perPixel = parseFloat(u.searchParams.get("pp"));
@@ -131,7 +142,7 @@ class PageState {
   }
 
   toURL() {
-    let u = new URL(window.location);
+    const u = new URL(window.location);
     u.searchParams.set("cx", this.cx);
     u.searchParams.set("cy", this.cy);
     u.searchParams.set("pp", this.perPixel);
@@ -140,8 +151,8 @@ class PageState {
   }
 }
 
-const ROWS = 3,
-  COLS = 4,
+const ROWS = 9,
+  COLS = 12,
   NUMWORKERS = navigator.hardwareConcurrency || 2;
 
 class MandelbrotCanvas {
@@ -272,6 +283,7 @@ class MandelbrotCanvas {
     switch (event.key) {
       case "Escape":
         this.setState(PageState.initialState());
+        break;
       case "+":
         this.setState((s) => {
           s.maxIterations = Math.round(s.maxIterations * 1.5);
@@ -344,7 +356,9 @@ class MandelbrotCanvas {
   }
 }
 
-let canvas = document.createElement("canvas");
+// canvasを設定する。このJavaScriptファイルは自己完結している。
+// HTMLファイルには<script>タグだけを記述すれば良い
+const canvas = document.createElement("canvas");
 document.body.append(canvas);
 document.body.style = "margin:0";
 canvas.style.width = "100%";
