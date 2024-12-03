@@ -8,7 +8,7 @@ function retryWithExponentialBackoff(func, maxRetry, callback) {
   const tryFunc = async () => {
     try {
       const response = await func();
-      if (response && response.status === 200) {
+      if (response && response.ok) {
         callback(true, response);
       } else if (
         response &&
@@ -58,9 +58,9 @@ function requestWithRetryAndTimeout(url, options = {}) {
       }
     );
   }).catch((error) => {
-    if (error.name === "AbortError") {
+    if (error && error.name === "AbortError") {
       alert("リクエストがタイムアウトしました");
-    } else {
+    } else if (error) {
       alert(error.message);
     }
     throw error;
@@ -129,11 +129,12 @@ form.addEventListener("submit", async (e) => {
       }
     );
 
-    if (response && response.status === 201) {
+    if (!response.ok) {
+      alert("Failed to create a new task");
+    }
+    else {
       const task = await response.json();
       appendToDoItem(task);
-    } else {
-      alert("Failed to create a new task");
     }
   } catch (error) {
     console.error(error);
@@ -209,5 +210,5 @@ function appendToDoItem(task) {
 
   elem.append(toggle, label, destroy);
   list.prepend(elem);
-  console.log(document.cookie);
+  console.log("リストに追加しました");
 }
