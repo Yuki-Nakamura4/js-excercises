@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const todos = []; // 毎回画面上の全アイテムを取得し保存する
       list.querySelectorAll("li").forEach(li => {
         // UI上の情報からアイテムを取得
+        // 指摘：DOM操作は関数の外でするとテストしやすくなる(純粋関数にする)
         const label = li.querySelector("label");
         const toggle = li.querySelector("input[type='checkbox']");
         todos.push({ name: label.textContent, completed: toggle.checked });

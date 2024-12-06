@@ -1,5 +1,6 @@
 import { sendRequest } from "./client.js";
 
+// inputIdに対応するinput要素の値をリクエストとして送信し、結果を表示する
 async function sendRequestFromInput(inputId) {
   console.log(inputId);
   const input = document.getElementById(inputId);
