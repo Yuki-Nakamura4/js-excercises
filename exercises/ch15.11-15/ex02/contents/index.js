@@ -2,6 +2,10 @@ const form = document.querySelector("#new-todo-form");
 const list = document.querySelector("#todo-list");
 const input = document.querySelector("#new-todo");
 
+// 指数関数的バックオフでリトライする関数
+// func: リトライする非同期関数
+// maxRetry: 最大リトライ回数
+// callback: リトライ結果を受け取るコールバック関数。成功したらtrue、失敗したらfalseを渡す
 function retryWithExponentialBackoff(func, maxRetry, callback) {
   let attempt = 0;
 
@@ -31,18 +35,24 @@ function retryWithExponentialBackoff(func, maxRetry, callback) {
   tryFunc();
 }
 
+// タイムアウト付きで fetch する関数
+// url: リクエストする URL
+// options: fetch のオプション。タイムアウトの設定は options.timeout にミリ秒単位の数値を指定
 function fetchWithTimeout(url, options = {}) {
   if (options.timeout) {
-    const controller = new AbortController();
-    options.signal = controller.signal;
+    const controller = new AbortController(); // タイムアウト用のコントローラーを作成
+    options.signal = controller.signal; // オプションにコントローラーのシグナルを設定
     setTimeout(() => {
-      controller.abort();
+      controller.abort(); // タイムアウト時にコントローラーを中断
     }, options.timeout);
   }
 
   return fetch(url, options);
 }
 
+// リトライとタイムアウトを組み合わせたリクエスト関数
+// url: リクエストする URL
+// options: fetch のオプション。タイムアウトの設定は options.timeout にミリ秒単位の数値を指定
 function requestWithRetryAndTimeout(url, options = {}) {
   return new Promise((resolve, reject) => {
     options.timeout = 3000;
@@ -67,6 +77,7 @@ function requestWithRetryAndTimeout(url, options = {}) {
   });
 }
 
+// フォームの入力を無効化する関数
 function disableForm() {
   form.querySelector("button").disabled = true;
   input.disabled = true;
@@ -75,6 +86,7 @@ function disableForm() {
   });
 }
 
+// フォームの入力を有効化する関数
 function enableForm() {
   form.querySelector("button").disabled = false;
   input.disabled = false;
