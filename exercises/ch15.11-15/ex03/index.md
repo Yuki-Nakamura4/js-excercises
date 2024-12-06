@@ -21,7 +21,6 @@
 - Access-Control-Allow-Origin：許可されたオリジン
 - Access-Control-Allow-Methods：許可されたメソッド
 - Access-Control-Allow-Headers：許可されたHTTPリクエストヘッダー
-  - `Content-Type`を許可しないと、プリフライトリクエストが失敗し、実際のリクエストがブロックされる
 - Access-Control-Allow-Credentials：クレデンシャル（Cookie、認証ヘッダー、TLSクライアント証明書など）の送信を許可するかどうか
 
 ```javascript
