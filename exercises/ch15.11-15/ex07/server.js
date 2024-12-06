@@ -43,9 +43,11 @@ async function serveContentsHandler(url, _req, res) {
 
 // CSP のヘッダを返すミドルウェア
 function cspMiddleware(_url, req, res) {
+
+  const ricohHash = crypto.createHash("sha256").update(`alert("RICOH")`).digest("base64");
+
   // TODO: CSP ヘッダを設定する
-  // world.jsも実行されてしまう。。
-  // res.setHeader("Content-Security-Policy", "TODO");
+  res.setHeader("Content-Security-Policy", `script-src 'sha256-${ricohHash}' http://localhost:3000/hello.js`);
   return true;
 }
 
