@@ -32,6 +32,7 @@ async function sendMessage() {
       },
       body: JSON.stringify({
         model: "gemma:2b",
+        // TODO: 履歴を送るようにする
         messages: [{ role: "user", content: message }],
         stream: true, // ストリーム形式でデータを受信
       }),

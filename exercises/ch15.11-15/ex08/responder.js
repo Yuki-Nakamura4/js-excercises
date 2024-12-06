@@ -6,6 +6,7 @@ const ws = new WebSocket("ws://localhost:3003");
 // メッセージを受信した際の処理
 ws.on("message", (message) => {
   const { id, request } = JSON.parse(message);
+  // 受信したメッセージにHelloをつけて返信
   const response = `Hello, ${request}`;
   ws.send(JSON.stringify({ id, response }));
 });
