@@ -77,9 +77,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // IndexedDBの操作
 
-const dbName = "todoDB";
-const storeName = "todos";
+const dbName = "todoDB"; // データベース名
+const storeName = "todos"; // オブジェクトストア名
 
+// データベースを開く関数
 const openDB = () => {
   // IndexedDBは非同期でデータベースを操作する
   return new Promise((resolve, reject) => {
@@ -105,12 +106,15 @@ const openDB = () => {
   });
 };
 
+// IndexedDBにデータを追加する関数
 const addTodoToDB = async (todo) => {
-  const db = await openDB();
+  const db = await openDB(); // データベースを開く
   return new Promise((resolve, reject) => {
     // トランザクションを開始。読み書きの両方を許可
     const transaction = db.transaction(storeName, "readwrite");
+    // オブジェクトストアを取得
     const store = transaction.objectStore(storeName);
+    // データを追加
     const request = store.add(todo);
 
     request.onsuccess = () => {
