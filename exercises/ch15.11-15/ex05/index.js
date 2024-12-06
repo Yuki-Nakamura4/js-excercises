@@ -1,3 +1,5 @@
+// 別タブに変更を反映させるのを実装漏れしている。。
+
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.querySelector("#new-todo-form");
   const list = document.querySelector("#todo-list");
