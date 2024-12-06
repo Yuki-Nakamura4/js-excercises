@@ -4,14 +4,10 @@
 
 - `mode: "cors"`：, CORSモードを指定し、クロスオリジンリソース共有を有効化
 - `credentials: "include"`：リクエストにクッキーや認証ヘッダーを常に含める
-- `headers: {"Content-Type": "application/json"}`：リクエストのコンテンツタイプがJSON形式であることを指定
 
 ```javascript
     mode: "cors", // CORSモードを指定
     credentials: "include", // Cookieを送信する
-    headers: {
-      "Content-Type": "application/json",
-    },
 ```
 
 ## `server.js`
