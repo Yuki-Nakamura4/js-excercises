@@ -30,4 +30,34 @@ async function startChild() {
   });
 }
 
-// TODO: ここに処理を書く
+///////////TODO////////////////////////////
+// 子プロセスを監視し、異常終了した場合に再起動する関数
+async function monitorChild() {
+  while (true) {
+    const [code, signal] = await startChild();
+    if (signal) {
+      console.log(`Child process terminated due to receipt of signal ${signal}`);
+      process.exit(0); // 自身も終了
+    } else if (code !== 0) {
+      console.log(`Child process exited with code ${code}. Restarting...`);
+    } else {
+      console.log(`Child process exited normally with code ${code}`);
+      break;
+    }
+  }
+}
+
+// シグナルをトラップし、子プロセスに通知する
+const signals = ["SIGINT", "SIGTERM"];
+signals.forEach((signal) => {
+  process.on(signal, () => {
+    console.log(`Received ${signal}, forwarding to child process...`);
+    if (child) {
+      child.kill(signal);
+    }
+  });
+});
+
+// 子プロセスの監視を開始
+monitorChild();
+///////////////////////////////////////////////////
