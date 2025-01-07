@@ -10,9 +10,11 @@ function generateKey() {
 // 平文を鍵とAES-256-CBCで暗号化する。次に、暗号文と初期化ベクトル(IV)を、Base64エンコードして返す。
 function encrypt64(text, key) {
     // 16バイトの暗号論的疑似乱数を初期化ベクトル (IV) とする
+    // ここを埋める
     const iv = crypto.randomBytes(16);
 
     // 暗号化とBase64エンコード
+    // ここを埋める
     const cipher = crypto.createCipheriv("aes-256-cbc", key, iv);
     let encryptedBase64 = cipher.update(text, "utf8", "base64");
     encryptedBase64 += cipher.final("base64"); // 最後のデータを追加し、暗号化を完了
