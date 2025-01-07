@@ -36,12 +36,15 @@ async function monitorChild() {
   while (true) {
     const [code, signal] = await startChild();
     if (signal) {
-      console.log(`Child process terminated due to receipt of signal ${signal}`);
-      process.exit(0); // 自身も終了
+      // シグナルを受信した場合は親プロセスも終了
+      console.log(`子プロセスがシグナル ${signal} を受信して終了しました`);
+      process.exit(0);
     } else if (code !== 0) {
-      console.log(`Child process exited with code ${code}. Restarting...`);
+      // 終了コードが0以外の場合は異常終了として再起動
+      console.log(`子プロセスが終了コード ${code} で終了しました。再起動します...`);
     } else {
-      console.log(`Child process exited normally with code ${code}`);
+      // 終了コードが0の場合は正常終了としてループを終了
+      console.log(`子プロセスが正常に終了しました。終了コード: ${code}`);
       break;
     }
   }
@@ -51,7 +54,7 @@ async function monitorChild() {
 const signals = ["SIGINT", "SIGTERM"];
 signals.forEach((signal) => {
   process.on(signal, () => {
-    console.log(`Received ${signal}, forwarding to child process...`);
+    console.log(`シグナル ${signal} を受信しました。子プロセスに転送します...`);
     if (child) {
       child.kill(signal);
     }
