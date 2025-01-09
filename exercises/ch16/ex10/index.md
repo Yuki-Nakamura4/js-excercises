@@ -12,9 +12,10 @@ Memory Usage: RSS=53088256, HeapTotal=8585216, HeapUsed=6793280, External=163953
 
 ## `fs.read`
 
-`readBuffer.js`  
-Memory Usage: RSS=34295808, HeapTotal=7798784, HeapUsed=6008696, External=1520872
+`read.js`
+Memory Usage: RSS=144097280, HeapTotal=6111232, HeapUsed=3548312, External=105402684
 
 ## 結果
 
-`readStream.js`の方がメモリの使用量が高くなった。
+`fs.read`の方がメモリの使用量が高くなった。
+`fs.createReadStream`はストリーミングで漸次的にファイルを読み込むため、メモリへの負荷を軽減することができる。

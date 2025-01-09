@@ -55,7 +55,7 @@ export function serve(rootDirectory, port) {
   );
 
   // エラーハンドリング
-  app.use((req, res, next) => {
+  app.use((req, res) => {
     res.setHeader("Content-Type", "text/plain; charset=UTF-8");
     res.status(404).send("Not Found");
   });
