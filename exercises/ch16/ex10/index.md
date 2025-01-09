@@ -10,7 +10,6 @@ External: V8エンジン外で使用されているメモリの量
 `readStream.js`  
 Memory Usage: RSS=53088256, HeapTotal=8585216, HeapUsed=6793280, External=16395342
 
-
 ## `fs.read`
 
 `readBuffer.js`  
