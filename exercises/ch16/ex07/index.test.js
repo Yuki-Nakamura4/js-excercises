@@ -11,7 +11,7 @@ test("ディレクトリをディレクトリと判定できること。", async
 });
 
 test("ディレクトリ中のファイルもファイルと判定できること。", async () => {
-  const result = await checkEntry("ch16/ex07/test/c/c-a");
+  const result = await checkEntry("ch16/ex07/test/c/a");
   expect(result).toBe("file");
 });
 

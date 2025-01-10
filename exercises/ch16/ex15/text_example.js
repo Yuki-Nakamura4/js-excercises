@@ -1,3 +1,4 @@
+// 教科書の例(元々のコード)
 const threads = require("worker_threads");
 if (threads.isMainThread) {
   const sharedBuffer = new SharedArrayBuffer(4);

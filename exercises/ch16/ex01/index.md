@@ -29,6 +29,7 @@ Fibonacci number: 1836311902
 
 リソースモニターはスレッド：20
 
+
 node mFib.js 45 5
 Worker 1 execution time: 1.201s
 Worker 0 execution time: 1.840s
@@ -39,6 +40,7 @@ Total execution time: 6.583s
 Fibonacci number: 1836311902
 
 リソースモニターはスレッド：21
+
 
 node mFib.js 45 6
 Worker 0 execution time: 800.606ms

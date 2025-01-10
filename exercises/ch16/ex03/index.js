@@ -4,6 +4,7 @@ import fs from "fs";
 // 鍵を生成する
 function generateKey() {
     // 32バイトの暗号論的疑似乱数を生成する
+    // 暗号を扱うときは、このような暗号論的疑似乱数を使うことが重要(通常の乱数は解析される)
     return crypto.randomBytes(32);
 }
 
