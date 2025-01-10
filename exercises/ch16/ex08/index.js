@@ -103,7 +103,7 @@ async function listIssues() {
 }
 
 // コマンドに応じた関数を実行
-if (argv._.includes('create')) {
+if (argv._.includes('create')) { // argv._は、コマンドライン引数のうち、オプションとして指定されなかった引数を格納する配列
     createIssue(argv.title, argv.body);
 } else if (argv._.includes('close')) {
     closeIssue(argv.issue_number);

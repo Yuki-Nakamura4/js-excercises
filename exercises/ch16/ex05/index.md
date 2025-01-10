@@ -11,18 +11,18 @@
 
 説明: 標準出力は、プログラムがデータを出力するためのデフォルトの出力ストリーム。  
 通常、コンソールやターミナルに表示される。
-`console.log`のメッセージは標準出力に表示される。
+たとえば、`console.log`のメッセージは標準出力に表示される。
 
 ### 標準エラー出力 (Standard Error, stderr)
 
 エラーメッセージや診断情報を出力するためのデフォルトの出力ストリーム。 
 標準出力とは別に扱われる。
-`console.error`のメッセージは標準エラー出力 に表示される。
+たとえば、`console.error`のメッセージは標準エラー出力 に表示される。
 
 ### リダイレクト (Redirection)
 
-標準入力、標準出力、標準エラー出力を別の場所（ファイルや別のコマンド）に送る操作。
-たとえば、`node script.js > output.txt`は、標準出力をoutput.txtファイルにリダイレクトする。
+標準入力、標準出力、標準エラー出力を別の場所(ファイルや別のコマンド)に送る操作。
+たとえば、`node script.js > output.txt`は、標準出力の結果をoutput.txtファイルに書き込む。
 
 ### パイプ (Pipe)
 
@@ -51,7 +51,8 @@
 左のコマンドは引数が無いため標準入力の内容がそのまま標準出力に表示されるが、左の標準出力先は`output.txt`にリダイレクトされているので、ファイルに文字が書きこまれていく。
 
 結果：予想通りだったが、日本語を入力するとファイルでは文字化けしていた。  
-(VS Codeの画面右下に表示されるファイルのエンコーディングを見たところ`UTF-16 LE`となっていた) なぜなのか？
+VS Codeの画面右下に表示されるファイルのエンコーディングを見たところ`UTF-16 LE`となっていた。  
+[PowerShellの既定のエンコードが`Unicode UTF-16LE`](https://learn.microsoft.com/ja-jp/powershell/module/microsoft.powershell.core/about/about_character_encoding?view=powershell-7.4)らしいので、そのせいだと思われる。
 
 ### `node cat.mjs file`
 
