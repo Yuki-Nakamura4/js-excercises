@@ -4,8 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "lint": "eslint ex01/lint_sample.js",
-    "format": "prettier --write ex01/format_sample.js"
+    "lint": "npx eslint --fix",
+    "fmt": "prettier --write **/*.{js,json}"
   },
   "author": "",
   "license": "ISC",
