@@ -7,9 +7,9 @@
 // Userオブジェクトであることを判定する
 function isUserObject(obj) {
   return (
-    typeof obj === "object" &&
-    typeof obj["id"] === "number" &&
-    typeof obj["name"] === "string"
+    typeof obj === 'object' &&
+    typeof obj['id'] === 'number' &&
+    typeof obj['name'] === 'string'
   );
 }
 
@@ -49,7 +49,7 @@ export class TaskManager {
 
 // priority="low"または完了済のタスクを判定する
 export function isLowOrCompletedTask(priorityTask) {
-  return priorityTask.priority === "low" || priorityTask.completed;
+  return priorityTask.priority === 'low' || priorityTask.completed;
 }
 
 // 判定関数の否定結果を返す関数を生成する
