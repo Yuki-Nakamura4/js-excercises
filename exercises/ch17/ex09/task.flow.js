@@ -1,11 +1,11 @@
-// @flow
+//      
 
-export type User = { id: number, name: string };
-export type Task = { title: string, completed: boolean, user: User };
-export type Priority = "low" | "middle" | "high";
-export type PriorityTask = Task & { priority: Priority };
+                                                
+                                                                     
+                                                 
+                                                         
 
-export function isUserObject(obj: any): boolean {
+export function isUserObject(obj     )          {
   return (
     typeof obj === 'object' &&
     obj !== null &&
@@ -42,7 +42,7 @@ export class TaskManager {
   }
 }
 
-export function isLowOrCompletedTask(task: PriorityTask): boolean {
+export function isLowOrCompletedTask(task              )          {
   return task.priority === "low" || task.completed;
 }
 
