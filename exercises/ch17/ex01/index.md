@@ -7,7 +7,7 @@ FlatConfig 形式の Google の既存設定を探してみたが見当たらな�
 
 ES Lint 公式のマイグレーションガイド([Configuration Migration Guide](https://eslint.org/docs/latest/use/configure/migration-guide#using-eslintrc-configs-in-flat-config)によると、eslintrc 形式の config を Flat Config 形式に変換するために`FlatCompat`というものが提供されているらしい。
 
-また、マイグレーションにあたって`eslint-config-google`に含まれる`valid-jsdoc`や`require-jsdoc`などのルールは現在は非推奨または廃止されているらしく、それらが原因でエラーが発生したため、`eslint-config-google`内の該当設定をコメントアウトしたうえ、適宜新しいルール(`eslint-plugin-jsdoc`)に置き換えた。
+また、マイグレーションにあたって`eslint-config-google`に含まれる`valid-jsdoc`や`require-jsdoc`などのルールは現在は非推奨または廃止されているらしく、それらが原因でエラーが発生したため、`eslint-config-google`内の該当設定を無効化したうえ、適宜新しいルール(`eslint-plugin-jsdoc`)に置き換えた。
 
 ```javascript
 import { fileURLToPath } from 'url';
@@ -23,13 +23,21 @@ const compat = new FlatCompat({
 });
 
 export default [
-  ...compat.extends('google'), // Googleの設定を適用。"valid-jsdoc", "require-jsdoc"などの設定がおそらく互換性問題でエラーになったため、コメントアウトした
-  eslintConfigPrettier, // Prettierの設定を適用
+  // Googleの設定を適用
+  ...compat.extends('google'),
+  // "valid-jsdoc", "require-jsdoc"などの設定が互換性問題でエラーになったため、無効化した
+  {
+    rules: {
+      'valid-jsdoc': 'off', 
+      'require-jsdoc': 'off', 
+    },
+  },
   {
     plugins: {
       jsdoc, // jsdocプラグインを適用
     },
   },
+  eslintConfigPrettier, // Prettierの設定を適用
   // ignoresはignoresだけのオブジェクトを作らないと適用されないので注意
   // 他のキーがあると、「そのキーの設定が無視される対象」を指定することになる
   {

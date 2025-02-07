@@ -11,13 +11,21 @@ const compat = new FlatCompat({
 });
 
 export default [
-  ...compat.extends('google'), // Googleの設定を適用。"valid-jsdoc", "require-jsdoc"などの設定がおそらく互換性問題でエラーになったため、コメントアウトした
-  eslintConfigPrettier, // Prettierの設定を適用
+  // Googleの設定を適用
+  ...compat.extends('google'),
+  // "valid-jsdoc", "require-jsdoc"などの設定が互換性問題でエラーになったため、無効化した
+  {
+    rules: {
+      'valid-jsdoc': 'off', 
+      'require-jsdoc': 'off', 
+    },
+  },
   {
     plugins: {
       jsdoc, // jsdocプラグインを適用
     },
   },
+  eslintConfigPrettier, // Prettierの設定を適用
   // ignoresはignoresだけのオブジェクトを作らないと適用されないので注意
   // 他のキーがあると、「そのキーの設定が無視される対象」を指定することになる
   {
