@@ -8,8 +8,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 const TOKEN = process.env.GITHUB_PAT;
 
-Polly.register(NodeHttpAdapter);
-Polly.register(FSPersister);
+// Pollyにアダプターとパーシスターを登録
+Polly.register(NodeHttpAdapter); // adapterは、PollyがHTTPリクエストをキャプチャするためのもの
+Polly.register(FSPersister); // persisterは、PollyがHTTPリクエストを保存するためのもの
 
 describe('GitHub Issue操作関数のPolly.JSを用いたテスト', () => {
   let polly;
@@ -21,10 +22,10 @@ describe('GitHub Issue操作関数のPolly.JSを用いたテスト', () => {
       persister: 'fs',
       persisterOptions: {
         fs: {
-          recordingsDir: './recordings',
+          recordingsDir: './ch17/ex02/recordings', // recordingsディレクトリに保存
         },
       },
-      recordIfMissing: true,
+      recordIfMissing: true, // recordingsディレクトリにリクエストが存在しない場合、リクエストを記録
     });
 
     api = axios.create({
