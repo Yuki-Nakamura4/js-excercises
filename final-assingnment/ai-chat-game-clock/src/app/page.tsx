@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import StartPopup from "./StartPopup";
 import GameMessageWindow from "./GameMessageWindow";
 import ClearPopup from "./ClearPopup";
+import { secretIdentity } from "./api/chat/route";
 
 type Message = {
   id: string;
@@ -118,7 +119,7 @@ export default function Chat() {
     setIsStreaming(false);
 
     if (
-      aiMessage.content.includes("コウメ太夫") ||
+      aiMessage.content.includes(`${secretIdentity}`) ||
       aiMessage.content.includes("お見事")
     ) {
       setIsGameCleared(true);
@@ -205,7 +206,7 @@ export default function Chat() {
       }
 
       if (
-        aiMessage.content.includes("コウメ太夫") ||
+        aiMessage.content.includes(`${secretIdentity}`) ||
         aiMessage.content.includes("お見事")
       ) {
         await new Promise((resolve) => setTimeout(resolve, 800));
