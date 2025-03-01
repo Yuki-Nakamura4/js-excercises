@@ -1,4 +1,8 @@
-function ClearPopup() {
+"use client";
+
+import { useEffect } from "react";
+
+function ClearPopup({ onClose }: { onClose: () => void }) {
   const now = new Date();
   const futureYears = now.getFullYear() + 10000;
   const month = String(now.getMonth() + 1).padStart(2, "0");
@@ -7,8 +11,22 @@ function ClearPopup() {
   const minutes = String(now.getMinutes()).padStart(2, "0");
   const seconds = String(now.getSeconds()).padStart(2, "0");
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
+
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center">
+    <div className="flex items-center justify-center">
       <div className="bg-black p-8 rounded-lg max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-8 text-center">おめでとう！</h2>
         <div className="space-y-4 text-white">
