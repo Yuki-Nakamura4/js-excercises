@@ -23,7 +23,6 @@ export default function Scroll2dGameScreen({
         keys!: {
           A: Phaser.Input.Keyboard.Key;
           D: Phaser.Input.Keyboard.Key;
-          W: Phaser.Input.Keyboard.Key;
         };
         wasdText!: Phaser.GameObjects.Text;
         enterText!: Phaser.GameObjects.Text;
@@ -36,66 +35,65 @@ export default function Scroll2dGameScreen({
         // 画像の読み込み
         preload() {
           this.load.image("background", "/images/desert.png");
-          this.load.image("player", "/images/player.png");
+          this.load.image("player_r_1", "/images/player_r_1.png"); // 立ち
+          this.load.image("player_r_2", "/images/player_r_2.png"); // 歩き1
+          this.load.image("player_r_3", "/images/player_r_3.png"); // 歩き2
         }
 
         create() {
-          // 背景を画面左上に配置し、サイズを設定
+          // 背景を設定
           this.background = this.add.image(0, 0, "background");
           this.background.setOrigin(0, 0);
           this.background.setDisplaySize(1800, 600);
 
-          // 地面を背景画像の水平線に合わせて配置
-          const groundY = 500; // 地面のY座標を調整
+          // 地面の設定
+          const groundY = 520; // 地面のY座標
           this.ground = this.add.rectangle(0, groundY, 5000, 10, 0x000000, 0);
           this.physics.add.existing(this.ground, true);
 
-          // プレイヤーを適切な位置に配置
+          // プレイヤーの設定
           this.player = this.physics.add
-            .sprite(200, groundY - 105, "player")
+            .sprite(200, groundY - 155, "player_r_1")
             .setScale(1);
           this.player.setCollideWorldBounds(true);
-
-          // プレイヤーと地面の衝突を設定
           this.physics.add.collider(this.player, this.ground);
 
-          // カメラの設定（背景サイズに合わせる）
-          this.cameras.main.setBounds(0, 0, 1800, 600);
-          this.cameras.main.startFollow(this.player, true, 0.1, 0.1);
+          // **アニメーションの作成**
+          this.anims.create({
+            key: "walk",
+            frames: [{ key: "player_r_2" }, { key: "player_r_3" }],
+            frameRate: 6, // 1秒間に6フレーム
+            repeat: -1, // 無限ループ
+          });
 
-          // キー入力設定（WASD対応）
+          // **キー入力の設定（A, D のみ）**
           this.keys = {
             A: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.A),
             D: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.D),
-            W: this.input.keyboard!.addKey(Phaser.Input.Keyboard.KeyCodes.W),
           };
 
-          // WASDで操作できることを画面隅に表示
-          this.wasdText = this.add.text(
-            10,
-            10,
-            "【操作】A/D: 移動, W: ジャンプ",
-            {
-              font: "16px Arial",
-            }
-          );
+          // WASD説明テキスト
+          this.wasdText = this.add.text(10, 10, "【操作】A/D: 移動", {
+            font: "16px Arial",
+          });
           this.wasdText.setScrollFactor(0);
 
-          // Enterキーのプロンプトを非表示で作成
+          // Enterキーのプロンプト（非表示）
           this.enterTextBackground = this.add.graphics();
           this.enterTextBackground.fillStyle(0xffffff, 1);
           this.enterTextBackground.fillRoundedRect(1600, 30, 200, 50, 15);
           this.enterTextBackground.setVisible(false);
 
-          this.enterText = this.add.text(1700, 40, "Press Enter", {
+          this.enterText = this.add.text(1567, 40, "Press Enter", {
             font: "24px Arial",
           });
           this.enterText.setOrigin(0.5);
           this.enterText.setVisible(false);
-          // アニメーションを追加
+
+          // Enterキーの点滅アニメーション
           this.tweens.add({
             targets: [this.enterText, this.enterTextBackground],
-            y: "+=10", // 10ピクセル上下に移動
+            y: "+=10",
             yoyo: true,
             repeat: -1,
             ease: "Sine.easeInOut",
@@ -106,22 +104,22 @@ export default function Scroll2dGameScreen({
         update() {
           if (!this.player) return;
 
-          // 左右移動
+          // **移動処理**
           if (this.keys.A.isDown) {
             this.player.setVelocityX(-240);
+            this.player.play("walk", true);
+            this.player.setFlipX(true); // 左向き
           } else if (this.keys.D.isDown) {
             this.player.setVelocityX(240);
+            this.player.play("walk", true);
+            this.player.setFlipX(false); // 右向き
           } else {
             this.player.setVelocityX(0);
+            this.player.setTexture("player_r_1"); // 静止状態
           }
 
-          // ジャンプ
-          if (this.keys.W.isDown && this.player.body?.blocked.down) {
-            this.player.setVelocityY(-300);
-          }
-
-          // モノリスの前で Enter を押すと画面遷移
-          if (this.player.x > 1550) {
+          // **モノリスの前で Enter を押すと画面遷移**
+          if (this.player.x > 1350) {
             this.enterText.setVisible(true);
             this.input.keyboard!.on("keydown-ENTER", () => onEnterPress());
           } else {
@@ -129,6 +127,7 @@ export default function Scroll2dGameScreen({
           }
         }
       }
+
       const config: Phaser.Types.Core.GameConfig = {
         type: Phaser.AUTO,
         width: 1800,
