@@ -2,11 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import StartPopup from "./StartPopup";
 import GameMessageWindow from "./GameMessageWindow";
-import ClearPopup from "./ClearPopup";
 import { secretPerson } from "./api/chat/route";
-import { on } from "events";
 
 type Message = {
   id: string;
@@ -14,7 +11,10 @@ type Message = {
   content: string;
 };
 
-const originalSound = new Audio("/sounds/message.mp3");
+// **効果音のファイルを追加**
+const chatMessageSound = new Audio("/sounds/message.mp3");
+const keyboardSound = new Audio("/sounds/keyboard.mp3");
+const enterSound = new Audio("/sounds/enter.mp3");
 
 export default function Chat({ onClear }: { onClear: () => void }) {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -65,7 +65,7 @@ export default function Chat({ onClear }: { onClear: () => void }) {
 
   // 効果音を再生する関数（cloneNode を使用）
   const playSound = () => {
-    const sound = originalSound.cloneNode() as HTMLAudioElement;
+    const sound = chatMessageSound.cloneNode() as HTMLAudioElement;
     sound.play().catch((error) => {
       console.error("音声の再生に失敗しました:", error);
     });
@@ -73,6 +73,27 @@ export default function Chat({ onClear }: { onClear: () => void }) {
 
   // スタート時の処理
   const handleStart = async () => {
+    // **キーボード音を最初の1.5秒だけ再生**
+    keyboardSound.currentTime = 0; // ⬅ 音の再生位置をリセット
+    keyboardSound.play().catch((error) => {
+      console.error("キーボード音の再生に失敗:", error);
+    });
+
+    // 1.5秒後にキーボード音を停止
+    setTimeout(() => {
+      keyboardSound.pause();
+    }, 1500);
+
+    // **キーボード音が終わったらEnter音を再生**
+    setTimeout(() => {
+      enterSound.play().catch((error) => {
+        console.error("Enterキー音の再生に失敗:", error);
+      });
+    }, 2000); // キーボード音が終わるタイミングで再生
+
+    // キーボード音・エンター音が終わるのを待ってからメッセージを表示
+    await new Promise((resolve) => setTimeout(resolve, 2500));
+
     // 初期メッセージを設定
     const initialUserMessage: Message = {
       id: uuidv4(),
@@ -147,6 +168,11 @@ export default function Chat({ onClear }: { onClear: () => void }) {
       // 2文字ごとに効果音を鳴らす
       if (charCount % 2 === 0) {
         playSound();
+      }
+
+      // 「。」が来たら 0.3 秒待つ
+      if (char === "。") {
+        await new Promise((resolve) => setTimeout(resolve, 300));
       }
     }
 
@@ -258,7 +284,7 @@ export default function Chat({ onClear }: { onClear: () => void }) {
 
   return (
     <>
-      <div className="w-1/2 mx-auto py-8">
+      <div className="w-2/5 mx-auto py-8">
         <div className="border rounded-lg p-4 shadow-md">
           {messages.map((message) => (
             <div key={message.id} className="my-2">
