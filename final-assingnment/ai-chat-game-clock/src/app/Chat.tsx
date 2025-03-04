@@ -284,7 +284,7 @@ export default function Chat({ onClear }: { onClear: () => void }) {
 
   return (
     <>
-      <div className="w-2/5 mx-auto py-8">
+      <div className="w-2/5 mx-auto py-8 text-white">
         <div className="border rounded-lg p-4 shadow-md">
           {messages.map((message) => (
             <div key={message.id} className="my-2">

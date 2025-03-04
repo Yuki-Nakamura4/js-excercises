@@ -26,7 +26,7 @@ function ClearPopup({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex text-white items-center justify-center">
       <div className="bg-black p-8 rounded-lg max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-8 text-center">おめでとう！</h2>
         <div className="space-y-4 text-white">

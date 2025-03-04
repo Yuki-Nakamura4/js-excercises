@@ -1,6 +1,6 @@
 function StartPopup({ onStart }: { onStart: () => void }) {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
+    <div className="fixed inset-0 flex items-center justify-center text-white bg-gray-800 bg-opacity-75 z-50">
       <div className="bg-black p-8 rounded-lg max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-8 text-center">なんてことだ！</h2>
         <div className="space-y-4">
