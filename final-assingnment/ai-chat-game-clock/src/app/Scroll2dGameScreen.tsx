@@ -55,7 +55,11 @@ export default function Scroll2dGameScreen({
 
           this.anims.create({
             key: "walk",
-            frames: [{ key: "player_r_2" }, { key: "player_r_3" }],
+            frames: [
+              { key: "player_r_2" },
+              { key: "player_r_1" },
+              { key: "player_r_3" },
+            ],
             frameRate: 6,
             repeat: -1,
           });
@@ -132,7 +136,7 @@ export default function Scroll2dGameScreen({
           this.player.setTexture("player_r_1");
 
           this.time.delayedCall(500, () =>
-            setDialogue("このモノリス......キーボードと液晶がついてる")
+            setDialogue("......キーボードと液晶がついてる")
           );
           this.time.delayedCall(3000, () =>
             setDialogue("これでAIとチャットできるみたい")
