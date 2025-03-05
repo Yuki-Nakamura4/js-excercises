@@ -130,6 +130,7 @@ export default function Scroll2dGameScreen({
 
         handleEnterPress() {
           if (!this.canControl) return;
+          this.enterText.setVisible(false);
           this.canControl = false;
           this.player.setVelocityX(0);
           this.player.anims.stop();
@@ -188,7 +189,7 @@ export default function Scroll2dGameScreen({
     <div className="relative">
       <div ref={gameRef} className="border" />
       {dialogue && (
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-gray-600 p-4 rounded shadow-lg w-1/3 text-center">
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 bg-white text-gray-800 p-4 rounded shadow-lg w-1/3 text-center">
           {dialogue}
         </div>
       )}
